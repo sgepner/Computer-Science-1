@@ -73,7 +73,7 @@
     \item Stack Overflow
     \item C / C++ reference online
     \item Google, Bing, Duck Duck Go ...
-    \item Visual Studio 2015 Community or Visual Studio 2013
+    \item Any Visual Studio or other IDE with C/C++ support
     \item It is like push-ups, you need practice, not books!
   \end{itemize}
 \end{frame}
@@ -122,7 +122,7 @@
 \begin{frame}[fragile]{First program}
       \begin{itemize}
         \item Text file with {\bf .c} extension (or .cpp ...)
-        \item Edit with your favourite text editor (or ...)
+        \item Edit with your favourite text editor (or an IDE)
         \item // this is a single line comment, this will not be processed
         \item /* this is a multi line comment, will not be processed */
       \end{itemize}
@@ -165,20 +165,26 @@ Can get pretty long ...
 
 \begin{frame}{Basic C elements}
   \framesubtitle{Allowable characters}
+  \centering
+  Characters we can use:
   \begin{itemize}
     \item a-z - lower case letters
     \item A-Z - upper case letters - different!
     \item 0-9 - digits
     \item (), [], {} - brackets
     \item +, -, *, /, \% - operations
-    \item \, !, <, =, >
+    \item \, !, $<$, =, $>$
     \item \&, @, ., ,, :, ;, ', ", \#,
-    \item There will be more!
+    \item And than some more!
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Basic C elements}
   \framesubtitle{Keywords}
+  \centering
+  Reserved keywords that have a special meaning to the compiler:
+  \vspace*{10pt}
+  
   \begin{columns}
     \begin{column}{0.2\textwidth}
       auto\\
@@ -226,12 +232,16 @@ Can get pretty long ...
 
 \begin{frame}{Basic C elements}
   \framesubtitle{User defined names}
+  \centering
+  As programmers we will need to give names to elements of our program:
+  \vspace*{10pt}
+  
   \begin{itemize}
-    \item Function names, variables, constants ...
-    \item Any sequence of letters, digits and an underscore
+    \item Functions, variables, constants (and some others) need an identifier
+    \item Any sequence of letters, digits and an underscore can be a name
     \item First character must be a letter
-    \item Can not be a keyword
-    \item ax123(), x1(), dominateTheWorld(), RuleGalaxy111(), ...
+    \item An identifier can not be a keyword (see the previous slide)
+    \item ax123(), x1(), dominateTheWorld(), RuleGalaxy111() are examples of admissible identifiers (names)
     \item Customary to start with a lower case letter
   \end{itemize}
 \end{frame}
