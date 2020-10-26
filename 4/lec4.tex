@@ -49,26 +49,28 @@
     \titlepage
 }
 
-\begin{frame}[fragile]
-  \frametitle{printf() and scanf()}
-
-\begin{lstlisting}
-#include <stdio.h>
-int a;
-double b;
-scanf("%d", &a);
-scanf("%lf", &b);
-
-printf("\t a=%d \t b=%lf \n", a, b);
-
-\end{lstlisting}
-
-\end{frame}
-
+% \begin{frame}[fragile]
+%   \frametitle{printf() and scanf()}
+%
+% \begin{lstlisting}
+% #include <stdio.h>
+% int a;
+% double b;
+% scanf("%d", &a);
+% scanf("%lf", &b);
+%
+% printf("\t a=%d \t b=%lf \n", a, b);
+%
+% \end{lstlisting}
+%
+% \end{frame}
+%
 \section{Branching}
 % if ?: switch
 
 \begin{frame}
+\frametitle{Code branching}
+\framesubtitle{is about choosing the right path}
   \begin{itemize}
     \item Branching is deciding what actions to take
     \item The program chooses to follow one branch or another
@@ -229,12 +231,68 @@ switch( expression )
     \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Functions}
+\framesubtitle{Enclose actions into separate procedures}
 
+  \begin{itemize}
+    \item It makes sense to split the program into easy to maintain pieces
+    \item We use the concept of {\bf functions} to encapsulate actions that our program might perform
+    \item Much as mathematical functions, functions in {\bf C} have arguments.
+    \item Functions might {\bf return} a value (or not) to the {\it caller}
+  \end{itemize}
+  
+  Syntax of a function:
+    \begin{lstlisting}
+type_of_function function_name (list_of_arguments)
+{
+  // body of a function
+  return statment ends the function
+}
+    \end{lstlisting}
+    
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Functions}
+\framesubtitle{Enclose actions into separate procedures}
 
+    \begin{itemize}
+      \item Functions are compiled separately.
+      \item Functions can be stored in different files.
+      \item Once compiled functions are linked into the executable during Linking process.
+      \item Nots: Linker errors are nasty!       
+    \end{itemize}
+     
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Functions}
+\framesubtitle{Enclose actions into separate procedures}
 
+    \begin{itemize}
+      \item Functions can be {\bf declared} and {\bf defined} before the call is made,
+      \item or the {\bf definition} can be postponed with {\bf declaration} only visible.
+      \item Functions are identified by type, name and arguments.
+      \item Consequently there can be more than one function with the same name.
+    \end{itemize}
+    
+\begin{lstlisting}
+int fun1 (int a) { return a+5; }
+int fun2 (int a, int b);
+int main(){
+  int b = fun1(5);
+  int c = fun1(5, 7);
+}
+int fun2 (int a, int b)
+{
+  return a+b;
+}
+\end{lstlisting}
 
+Note: Identifiers of arguments apply only within a function body!
+     
+\end{frame}
 
 
 
