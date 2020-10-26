@@ -10,10 +10,11 @@ int main(){
   }
 
   int a=9;
-//  if(a=7) //this is wrong!!!
-//  {
-//    printf("Is 9=7 ??\n");
-//  }
+  if(a=7) //this is wrong!!!
+  {
+    printf("Is 9=7 ??\n");
+    printf("a=%d\n", a);
+  }
   
   if(a==9)
   {
