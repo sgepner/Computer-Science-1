@@ -270,10 +270,10 @@ while(condition)
     \node [inner sep=0pt, outer sep=0pt] (CC) at (-1,-2) {};
     \node [inner sep=0pt, outer sep=0pt] (D) at (0,-3) {};
     \path [draw, -latex, thick] (A) -- (B);
-    \path [draw, -latex, thick] (B) -- node [] {no} (C);
+    \path [draw, -latex, thick] (B) -- node [] {} (C);
     \path [draw, thick] (C) -- (CC);
     \path [draw, -latex, thick] (CC) |- node [near start] {yes} (B);
-    \path [draw, -latex, thick] (C) -- node [near start] {yes} (D);
+    \path [draw, -latex, thick] (C) -- node [near start] {no} (D);
 \end{tikzpicture}
     \end{column}
     \begin{column}{0.5\textwidth}
