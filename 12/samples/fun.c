@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-double derivative( double (*fun)(double) , double x, double h)
+double derivative( double (fun)(double) , double x, double h)
 {
   return (fun(x+h) - fun(x)) / h; 
 }

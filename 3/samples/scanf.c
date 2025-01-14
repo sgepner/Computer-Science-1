@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int main(){
+int main()
+{
   int a;
   
   printf("Give me an int!\n");

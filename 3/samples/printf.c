@@ -25,5 +25,5 @@ int main(){
   //printf(" aaaaa \bbb \n ssss\b\b\b \n a\ta\vaaaa\v" );  
   //printf(" aaaaa \r ddd\n" );
   //printf(" \\ is printed with \\\\ \n");
-  printf(" aaaaa \b\b bbb  \n\tdd\tdd\vddddd\raaaaa\n" );
+  printf(" aaaaa\vbbb  \n\tdd\tdd\vddddd aaaaa\n" );
 }

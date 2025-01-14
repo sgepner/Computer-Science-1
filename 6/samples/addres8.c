@@ -1,14 +1,9 @@
 #include <stdio.h>
 
 int main(){
-
-  double a=45681.155155e39;
-  int* p = (int*)&a;
+  int* p = 0;
   
-  printf("%lf\n", a);
-  *p = 8; //a=??
-  printf("%lf\n", a);
+  *p = 80;
   
-  *(p+1)=0;//a ==??
-  printf("%lf\n", a);
+  
 }
