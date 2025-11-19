@@ -3,7 +3,6 @@
 int main()
 {
   int a;
-  
   printf("Give me an int!\n");
   scanf("%d", &a); //mind the &!!
   printf("a=%d\n", a);

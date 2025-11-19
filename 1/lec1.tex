@@ -16,13 +16,13 @@
      framexleftmargin=0.1cm,
      framesep=1pt,
      rulesep=.4pt,
-     backgroundcolor=\color{gray97},
+     backgroundcolor=\color{gray!10},
      rulesepcolor=\color{black},
      language=C,
            basicstyle=\ttfamily\scriptsize,
            keywordstyle=\color{blue}\ttfamily,
            stringstyle=\color{red}\ttfamily,
-           commentstyle=\color{green}\ttfamily,
+           commentstyle=\color{magenta}\ttfamily,
           breaklines=true,
           %
           numbers=left,
@@ -40,8 +40,8 @@
 \usepackage{tikz}
 \usetikzlibrary{calc,shapes}
 
-\eventtitle{Computer Science I}
-\title{Computer Science I}
+\eventtitle{Podstawy Programowania}
+\title{Podstawy Programowania}
 \author[shortname]{Stanis{\l}aw Gepner}
 \institute[shortinst]{room 117,\\ stanislaw.gepner@pw.edu.pl, sgepner@meil.pw.edu.pl}
 \date{}
@@ -74,6 +74,7 @@
     \item C / C++ reference online
     \item Google, Bing, Duck Duck Go ...
     \item Any Visual Studio or other IDE with C/C++ support
+    \item Online compilers \url{https://godbolt.org/}
     \item It is like push-ups, you need practice, not books!
   \end{itemize}
 \end{frame}
@@ -89,7 +90,8 @@
     \begin{column}{0.49\textwidth}
       \begin{itemize}
         \item Act of writing instructions enabling the computer to perform desired tasks
-        \item Ada Lovelace (1815 - 1852) - The first programmer    
+        \item Ada Lovelace (1815 - 1852) - The first programmer
+        \item Or was it Charles Babbage (1791-1871)?
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
@@ -114,6 +116,7 @@
         \item Provides low level access
         \item Influenced C++, Obj. C, C\#, Java, ...
       \end{itemize}
+      \item Many of the mannerisms of C have been adapted by many descendent languages. == to test for equality. \&\& for boolean AND, and \& for bitwise AND. << and >> for bit shifting. \% for modular arithmetic. Braces {} for code blocks. Now these seem almost universal.
     \end{itemize}
 }
 
