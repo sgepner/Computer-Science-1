@@ -14,11 +14,12 @@ void PrintRobot(struct Robot* pr)
 }
 
 int main(){
-  strcpy(r1.name, "Ala");
+  //strcpy(r1.name, "Ala");
+  r1.name = "Ala";
   r1.x = 10;
   r1.y=9;
   
   PrintRobot(&r1);
   
-  printf("%d\n", sizeof(struct Robot));
+  printf("%lud\n", sizeof(struct Robot));
 }
