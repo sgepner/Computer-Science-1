@@ -2,7 +2,7 @@
 
 Repozytorium zawiera materiały do przedmiotu **Computer Science 1 / Podstawy Programowania** dla studentów studiów inżynierskich Politechniki Warszawskiej.
 
-Materiały mają interaktywną formę i mozna je uruchomić przez: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sgepner/Computer-Science-1.git/master)
+Materiały mają interaktywną formę i można je uruchomić przez: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sgepner/Computer-Science-1.git/master)
 
 > **Od zera do bohatera.**
 
