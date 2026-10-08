@@ -154,6 +154,8 @@ Materiał prowadzi w przybliżeniu przez następujące zagadnienia:
 
 Repozytorium zawiera również wiele małych programów w C ilustrujących omawiane na wykładzie zagadnienia.
 
+**Wykład 1:** aktualnym materiałem wykładowym jest notebook `1/Wykład 1.ipynb`. Pliki `1/Lecture 1 examples.ipynb` oraz `1/lec1.tex` / `1/lec1.pdf` pozostają w repozytorium jako materiały historyczne i referencyjne.
+
 ---
 
 # Computer Science 1
@@ -305,3 +307,5 @@ The material progresses roughly through:
 12. Structures and further applications
 
 The repository also contains numerous small C programs illustrating the concepts discussed during lectures.
+
+**Lecture 1:** the current lecture material is `1/Wykład 1.ipynb`. The files `1/Lecture 1 examples.ipynb` and `1/lec1.tex` / `1/lec1.pdf` are retained as historical/reference material.
