@@ -156,7 +156,7 @@ Repozytorium zawiera również wiele małych programów w C ilustrujących omawi
 
 **Wykład 1:** aktualnym materiałem wykładowym jest notebook `1/Wykład 1.ipynb`. Pliki `1/Lecture 1 examples.ipynb` oraz `1/lec1.tex` / `1/lec1.pdf` pozostają w repozytorium jako materiały historyczne i referencyjne.
 
-**Wykład 2 (modernizacja w toku):** roboczy notebook `2/Wykład 2.ipynb` jest rozwijany etapami. W2.0: PASS zgłoszony przez prowadzącego 14.10.2026; kopia zgodna z historycznym notebookiem (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: przygotowano polskie otwarcie i mapę pojęć; lokalna weryfikacja oczekuje. Pliki `2/Lecture 2 Examples.ipynb` oraz `2/lec2.tex` / `2/lec2.pdf` pozostają materiałami historycznymi i referencyjnymi.
+**Wykład 2 (modernizacja w toku):** roboczy notebook `2/Wykład 2.ipynb` jest rozwijany etapami. W2.0: PASS zgłoszony przez prowadzącego 14.10.2026; kopia zgodna z historycznym notebookiem (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: VERIFIED PASS (14.10.2026), commit `c9b083b2` — potwierdzono na `dodo` właściwy HEAD, 70 komórek, 33 komórki C, kernel `c` oraz poprawne ładowanie notebooka; niezależna weryfikacja w C11 potwierdziła wyniki `a+b=11` i `a+b=14` (brak osobnego logu wykonania tych komórek w Jupyterze). W2.2: eksperymenty `sizeof`, `size_t`, `%zu`, `CHAR_BIT` przygotowane; lokalna weryfikacja oczekuje. Pliki `2/Lecture 2 Examples.ipynb` oraz `2/lec2.tex` / `2/lec2.pdf` pozostają materiałami historycznymi i referencyjnymi.
 
 ---
 
@@ -312,4 +312,4 @@ The repository also contains numerous small C programs illustrating the concepts
 
 **Lecture 1:** the current lecture material is `1/Wykład 1.ipynb`. The files `1/Lecture 1 examples.ipynb` and `1/lec1.tex` / `1/lec1.pdf` are retained as historical/reference material.
 
-**Lecture 2 (modernisation in progress):** `2/Wykład 2.ipynb` is the working lecture notebook. W2.0: instructor-reported PASS on 2026-10-14; the copy matched the historical notebook (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: Polish introduction and concept map implemented; local verification pending. The files `2/Lecture 2 Examples.ipynb` and `2/lec2.tex` / `2/lec2.pdf` remain historical/reference material.
+**Lecture 2 (modernisation in progress):** `2/Wykład 2.ipynb` is the working lecture notebook. W2.0: instructor-reported PASS on 2026-10-14; the copy matched the historical notebook (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: VERIFIED PASS (2026-10-14), commit `c9b083b2` — dodo confirmed correct HEAD, 70 cells, 33 C cells, kernel `c`, and notebook loading; independent C11 execution confirmed `a+b=11` and `a+b=14` (no separate Jupyter execution log supplied). W2.2: `sizeof`, `size_t`, `%zu`, and `CHAR_BIT` experiments implemented; local verification pending. The files `2/Lecture 2 Examples.ipynb` and `2/lec2.tex` / `2/lec2.pdf` remain historical/reference material.
