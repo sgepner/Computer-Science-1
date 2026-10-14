@@ -156,6 +156,8 @@ Repozytorium zawiera również wiele małych programów w C ilustrujących omawi
 
 **Wykład 1:** aktualnym materiałem wykładowym jest notebook `1/Wykład 1.ipynb`. Pliki `1/Lecture 1 examples.ipynb` oraz `1/lec1.tex` / `1/lec1.pdf` pozostają w repozytorium jako materiały historyczne i referencyjne.
 
+**Wykład 2 (modernizacja w toku):** roboczy notebook `2/Wykład 2.ipynb` jest rozwijany etapami. W2.0: PASS zgłoszony przez prowadzącego 14.10.2026; kopia zgodna z historycznym notebookiem (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: przygotowano polskie otwarcie i mapę pojęć; lokalna weryfikacja oczekuje. Pliki `2/Lecture 2 Examples.ipynb` oraz `2/lec2.tex` / `2/lec2.pdf` pozostają materiałami historycznymi i referencyjnymi.
+
 ---
 
 # Computer Science 1
@@ -309,3 +311,5 @@ The material progresses roughly through:
 The repository also contains numerous small C programs illustrating the concepts discussed during lectures.
 
 **Lecture 1:** the current lecture material is `1/Wykład 1.ipynb`. The files `1/Lecture 1 examples.ipynb` and `1/lec1.tex` / `1/lec1.pdf` are retained as historical/reference material.
+
+**Lecture 2 (modernisation in progress):** `2/Wykład 2.ipynb` is the working lecture notebook. W2.0: instructor-reported PASS on 2026-10-14; the copy matched the historical notebook (Git blob `a33d1194`, commit `3a3a15d8`). W2.1: Polish introduction and concept map implemented; local verification pending. The files `2/Lecture 2 Examples.ipynb` and `2/lec2.tex` / `2/lec2.pdf` remain historical/reference material.
