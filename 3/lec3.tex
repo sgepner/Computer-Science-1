@@ -1,3 +1,4 @@
+% Historical Beamer slide source. Current Polish lecture: 3/Wykład 3.ipynb
 \documentclass[10pt]{beamer}
 
 % \usepackage{define}
@@ -77,7 +78,7 @@ a=a+b;// perform addition in temporary space, copy on to a
 An arithmetic expresion:
     \begin{lstlisting}
 double x1; //declare a variable of type double
-x1=(-b+sqrt(delta))/(2.0*a); //Perform RHS operation, write result to x1
+x1 = (6.0 + sqrt(9.0)) / 2.0; // requires <math.h>
     \end{lstlisting}
 
 Example ...
@@ -90,18 +91,18 @@ Example ...
   \frametitle{Substitution}
   \centering
   When using "=" sign variable on the LHS is assigned value of RHS. This does not necessarily means equality!\\
-  The RHS is calculated first and later the value is copied to the LHS. Types of LHS and RHS should be the same.\\
-  Mixing of types should be avoided.\\
+  The RHS is calculated first and later the value is copied to the LHS. The RHS is converted to the type of LHS when needed; information may be lost.\\
+  Mixed types require care and explicit reasoning.\\
 \begin{lstlisting}
 double x1=6.28;
-int a = 2
+int a = 2;
 a = x1; //loss of data since a=6!
 x1=a;
 \end{lstlisting}
 There is an explicit way to change the type: casting
 \begin{lstlisting}
 double x1=6.28;
-int a = 2
+int a = 2;
 a = (int)x1; //loss of data, but no warning
 x1=(double)2/3; //x1 is not zero
 \end{lstlisting}
@@ -158,7 +159,7 @@ example ...
 
 \begin{frame}[fragile]
   \frametitle{Compound Assignment Operators += -= *= /=}
-  Change the value of the RHS by the value of the LHS
+  Update the LHS variable using the RHS expression
 
 \begin{lstlisting}
 a+=b; // same as a = a +b;
@@ -192,8 +193,8 @@ example ...
 int a = 1;
 float b=4.78;
 double c=3.4e9;
-char d='e'
-printf("%d %f %e %c \n", a, b, c, d)
+char d='e';
+printf("%d %f %e %c \n", a, b, c, d);
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -213,16 +214,16 @@ printf("%d %f %e %c \n", a, b, c, d)
 
 \begin{frame}[fragile]
   \frametitle{printf()}
-  \frametitle{new stuff}
+  \framesubtitle{new stuff}
   \begin{columns}
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 int a = 1;
 float b=4.78;
 double c=3.4e9;
-char d='e'
-printf("%+d %-f %10e %c \n", a, b, c, d)
-printf("%.10d %10.10f %10e %c \n", a, b, c, d)
+char d='e';
+printf("%+d %-f %10e %c \n", a, b, c, d);
+printf("%.10d %10.10f %10e %c \n", a, b, c, d);
 \end{lstlisting}
     \end{column}
     \begin{column}{0.52\textwidth}
@@ -252,9 +253,9 @@ printf(" aaa b\b \n fff \t ff \v fff \r a ")
     \begin{column}{0.52\textwidth}
       \begin{itemize}
         \item \textbackslash b - backspace
-        \item \textbackslash n - carriage return and newline
+        \item \textbackslash n - newline
         \item \textbackslash t - tab
-        \item \textbackslash v - newline
+        \item \textbackslash v - vertical tab
         \item \textbackslash r - carriage return
         \item \textbackslash \textbackslash - \textbackslash
         \item \textbackslash '' - '
@@ -275,16 +276,16 @@ int a;
 scanf("%d", &a);//Read int
 \end{lstlisting}
 \centering
-\includegraphics[width=0.7\textwidth, height=0.7\textheight, keepaspectratio]{scanf_perils}\\
-He forgot abouth \& \\
-{\tiny Source: the XKCD commic}
+\begin{block}{Mind the address}
+Use \texttt{\&a}, not \texttt{a}: scanf must write into the variable.
+\end{block}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item \textit{\#include $<$stdio.h$>$}
-        \item Reads formatted input from stdin - the keybord
+        \item Reads formatted input from stdin - usually the keyboard
         \item \textit{int scanf(const char *f, ...)}\\
-        returns the total number of characters written
+        returns the number of successfully assigned fields (or EOF before the first assignment)
         \item \textit{f}- a string containing a format specifier \textit{\textbf{\%specifier}}
         \item \textbf{Mind the \&} - very very important!!
         \item examples ...
@@ -305,16 +306,17 @@ He forgot abouth \& \\
 
 \begin{lstlisting}
 #include <math.h>
-double acos(double x) Returns the arc cosine of x in radians.
-double asin(double x) Returns the arc sine of x in radians.
-double atan(double x) Returns the arc tangent of x in radians.
-double atan2(doubly y, double x)Returns the arc tangent in radians of y/x based on the signs of both values to determine the correct quadrant.
+double acos(double x); // Returns the arc cosine of x in radians.
+double asin(double x); // Returns the arc sine of x in radians.
+double atan(double x); // Returns the arc tangent of x in radians.
+double atan2(double y, double x); // quadrant-aware angle
 
-double cos(double x) Returns the cosine of a radian angle x.
-double cosh(double x) Returns the hyperbolic cosine of x.
-double sin(double x) Returns the sine of a radian angle x.
-double sinh(double x) Returns the hyperbolic sine of x.
-double tanh(double x) Returns the hyperbolic tangent of x.
+double cos(double x); // Returns the cosine of a radian angle x.
+double cosh(double x); // Returns the hyperbolic cosine of x.
+double sin(double x); // Returns the sine of a radian angle x.
+double tan(double x); // Returns the tangent of an angle x.
+double sinh(double x); // Returns the hyperbolic sine of x.
+double tanh(double x); // Returns the hyperbolic tangent of x.
 \end{lstlisting}
 
 \end{frame}
@@ -324,14 +326,14 @@ double tanh(double x) Returns the hyperbolic tangent of x.
 
 \begin{lstlisting}
 #include <math.h>
-double exp(double x) Returns the value of e raised to the xth power.
-double log(double x)Returns the natural logarithm (base-e logarithm) of x.
-double log10(double x)Returns the common logarithm (base-10 logarithm) of x.
-double pow(double x, double y)Returns x raised to the power of y.
-double sqrt(double x)Returns the square root of x.
-double ceil(double x)Returns the smallest integer value greater than or equal to x.
-double fabs(double x)Returns the absolute value of x.
-double floor(double x)Returns the largest integer value less than or equal to x.
+double exp(double x); // Returns the value of e raised to the xth power.
+double log(double x); // Returns the natural logarithm (base-e logarithm) of x.
+double log10(double x); // Returns the common logarithm (base-10 logarithm) of x.
+double pow(double x, double y); // Returns x raised to the power of y.
+double sqrt(double x); // Returns the square root of x.
+double ceil(double x); // Returns the smallest integer value greater than or equal to x.
+double fabs(double x); // Returns the absolute value of x.
+double floor(double x); // Returns the largest integer value less than or equal to x.
 
 \end{lstlisting}
 
