@@ -17,6 +17,20 @@ for komorka in nb["cells"]:
         programy.append(tekst)
 assert len(programy) == 7, f"Oczekiwano 7 programow, znaleziono {len(programy)}"
 
+# Regresja tabeli Markdown: surowy `||` w komorce tabeli rozbija kolumny.
+tabele = [
+    "".join(cell["source"])
+    for cell in nb["cells"]
+    if cell["cell_type"] == "markdown"
+    and "— tabela prawdy" in "".join(cell["source"])
+]
+assert len(tabele) == 1
+wiersze = [w for w in tabele[0].splitlines() if w.startswith("|")]
+assert len(wiersze) == 6, f"Oczekiwano 6 linii tabeli: {wiersze}"
+assert wiersze[0] == "| p | q | AND | OR | NOT p |"
+assert all(w.count("|") == 6 for w in wiersze), "Nadmiarowe separatory tabeli"
+
+
 wyniki = [
     "Przed warunkiem\nx jest ujemne\nPo warunku\n",
     "x=7, w_przedziale=1\n",
