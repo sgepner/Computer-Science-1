@@ -30,6 +30,7 @@ Wpisując w terminalu znak EOF na początku wejścia na Linuksie, zwykle używa 
 | Plik | Do czego służy? | Polecenie kompilacji |
 |:--|:--|:--|
 | `samples/printf.c` | Szerokość pola, precyzja, `%%` | `gcc -std=c11 -Wall -Wextra -Werror -pedantic 3/samples/printf.c -o /tmp/w3_printf` |
+| `samples/sterowanie_terminalem.c` | `\\b`, `\\r`, `\\v`, apostrof i różnice między terminalem a plikiem | `gcc -std=c11 -Wall -Wextra -Werror -pedantic 3/samples/sterowanie_terminalem.c -o /tmp/w3_sterowanie` |
 | `samples/stdio_terminal.c` | `printf` zwraca liczbę zapisanych znaków; `stdout` kontra `stderr` | `gcc -std=c11 -Wall -Wextra -Werror -pedantic 3/samples/stdio_terminal.c -o /tmp/w3_stdio` |
 | `samples/scanf_stany.c` | Sukces 2, sukces częściowy 1, niedopasowanie 0, EOF | `gcc -std=c11 -Wall -Wextra -Werror -pedantic 3/samples/scanf_stany.c -o /tmp/w3_scanf` |
 | `samples/scanf.c` | Sprawdzanie pełnego odczytu dwóch pól | `gcc -std=c11 -Wall -Wextra -Werror -pedantic 3/samples/scanf.c -o /tmp/w3_dane` |
@@ -56,9 +57,17 @@ Z katalogu głównego repozytorium:
 python3 3/check_w3.py
 ```
 
-Skrypt nie wymaga uruchamiania Jupytera. Sprawdza metadane `kernelspec`, strukturę W3.0–W3.9, brak zapisanych wyników, brak interaktywnego `scanf` w komórkach kodu, a następnie kompiluje **wszystkie 18** programów z notebooka oraz **8** programów konsolowych pod GCC C11 z `-Wall -Wextra -Werror -pedantic` w konfiguracjach `-O0` i `-O2`. Weryfikuje **36 wykonań komórek i 44 scenariusze konsolowe** (również nieprawidłowe wejście i EOF). Programy i wyniki nie pozostają w repozytorium; pliki tymczasowe zostają usunięte.
+Skrypt nie wymaga uruchamiania Jupytera. Sprawdza metadane `kernelspec`, strukturę W3.0–W3.9, brak zapisanych wyników, brak interaktywnego `scanf` w komórkach kodu, a następnie kompiluje **wszystkie 22** programów z notebooka oraz **9** programów konsolowych pod GCC C11 z `-Wall -Wextra -Werror -pedantic` w konfiguracjach `-O0` i `-O2`. Weryfikuje **44 wykonania komórek i 46 scenariuszy konsolowych** (również nieprawidłowe wejście i EOF). Programy i wyniki nie pozostają w repozytorium; pliki tymczasowe zostają usunięte.
 
 Testy mają oczekiwane wyniki dla typowej konfiguracji Linux/x86-64, GCC, standard C11 i lokalizacja `C`. Nie są bezpośrednim uruchomieniem kernela `c` — to osobny test w środowisku wykładowym.
+
+## Zachowane wątki oryginalnego W3 i żart z welociraptorem
+
+Pełne zestawienie historycznych slajdów `lec3.tex` i komórek `Lecture 3 Examples.ipynb` z aktualnym notebookiem: [`W3_LEGACY_COVERAGE.md`](W3_LEGACY_COVERAGE.md).
+
+W W3.4 przywrócono **oryginalną ilustrację `scanf_perils.png`** (dodana do repozytorium przez prowadzącego) wraz z puentą **„He forgot about the `&`!!”**. Ilustracja jest przechowywana lokalnie obok notebooka, więc działa również offline.
+
+Uzupełniono również odrębny przykład `\\r` / `\\b` / `\\v` wykonywany w terminalu, notację wykładniczą z wieloma cyframi, ujemne i niecałkowite wykładniki `pow`, `exp(x+y)`, funkcje `asin`, `acos`, `atan`, `sinh`, `cosh`, `tanh`, pierwiastki równania kwadratowego i oryginalne ćwiczenie z numerem albumu. Powtórki typów i operatorów pozostają w W2 z wyraźnymi odsyłaczami.
 
 ## Materiały historyczne
 

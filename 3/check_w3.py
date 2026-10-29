@@ -24,6 +24,8 @@ EXPECTED_CELLS = [
     "int=-3, double=2.50, char=A\nunsigned=12, hex=c, oct=14\n",
     "|    12|12    |\n|1234567|1234567|\n|+12|-12|\n",
     "|     12.35|\n|1.23e+01|\n|12.35|\n|007|\n",
+    "naukowo = 1.001e+03\nduze E  = 1.001E+03\n"
+    "15 cyfr = 1.000888800000000e+03\nogolny  = 1000.9\n",
     "numer=00007\nujemny=-0007\nwypelniono 75% zadania\n",
  'wiersz pierwszy\nwiersz drugi\nA\tB\nUkosnik: \\ i cudzyslow: "\n',
     "sscanf zwrocil 1, a=42\n",
@@ -37,12 +39,21 @@ EXPECTED_CELLS = [
     "sqrt(9)=3.00\npow(2,3)=8.00\nfabs(-3.5)=3.50\n"
     "floor(2.7)=2.00, ceil(2.7)=3.00\n",
     "exp(2)=7.389056\nlog(exp(2))=2.000000\nlog10(1000)=3.000000\n",
+    "pow(5,-3.9)=0.001879\npow(10,2.4)=251.188643\n"
+    "exp(x+y)=298.867401\nlog(exp(5))=5.000000\n",
     "pi=3.141593\nsin(pi/2)=1.000000\natan2(1,1)=0.785398\n",
+    "cos(0)=1.000000, tan(0)=0.000000\n"
+    "asin(0.5)=0.523599, acos(0.5)=1.047198\n"
+    "atan(1)=0.785398\n"
+    "sinh(0)=0.000000, cosh(0)=1.000000, tanh(0)=0.000000\n",
     "sqrt(9.00)=3.00\n",
+    "delta=1.00, x1=2.00, x2=1.00\n",
 ]
 
 # File, stdin, expected status, expected stdout substrings, expected stderr substrings.
 SAMPLE_CASES = [
+    ("sterowanie_terminalem.c", "", 0,
+     ("ABCDE\rZ\n", "ABCDE\b!\n", "A\vB\n", "apostrof: '\n"), ()),
     ("printf.c", "", 0, ("|    12|12    |", "|      2.50|", "Postep: 75%"), ()),
     ("stdio_terminal.c", "", 0, ("ABC\n", "printf zapisal 4 znaki"), ("komunikat na stderr",)),
     ("scanf_stany.c", "7 2.5\n", 0, ("scanf zwrocil 2", "Pierwsze pole: 7", "Drugie pole: 2.50"), ()),
@@ -91,7 +102,7 @@ def main():
     assert doc["metadata"]["kernelspec"]["language"] == "c"
     cells = doc["cells"]
     code_cells = [c for c in cells if c["cell_type"] == "code"]
-    assert len(code_cells) == len(EXPECTED_CELLS) == 18
+    assert len(code_cells) == len(EXPECTED_CELLS) == 22
     assert all(c["execution_count"] is None and c["outputs"] == [] for c in code_cells)
     assert all("int main(void)" in "".join(c["source"]) for c in code_cells)
     assert all(not re.search(r"(?<!s)\bscanf\s*\(", "".join(c["source"]))
@@ -103,6 +114,14 @@ def main():
     for item in ("stdout", "stderr", "EOF", "sscanf", "//%cflags:-lm",
                  "niezależnej konsoli", "W2", "W4", "dziedzin", "-lm"):
         assert item in markdown, f"Missing teaching point: {item}"
+    # Protect the recovered historical topics, especially the lecturer's raptor joke.
+    for phrase in ("He forgot about the `&`!!", "scanf_perils.png",
+                   "scanf(\"%d\", a)", "pow(5.0, -3.9)",
+                   "asin(x)", "sinh(x)", "numer albumu",
+                   "\\Delta", "od -An -t x1"):
+        assert phrase in markdown, f"Missing recovered W3 topic: {phrase}"
+    assert len(EXPECTED_CELLS) == 22
+    assert len(SAMPLE_CASES) == 23
     for filename in sorted(set(row[0] for row in SAMPLE_CASES)):
         assert (SAMPLES / filename).exists(), filename
     print(f"PASS: notebook JSON, C kernel, {len(cells)} cells, "
@@ -125,7 +144,7 @@ def main():
                     ordinal, optimization, repr(result.stdout),
                     repr(EXPECTED_CELLS[ordinal]))
                 program_runs += 1
-            print(f"PASS: notebook C cell {ordinal+1:02d}/18 x -O0,-O2")
+            print(f"PASS: notebook C cell {ordinal+1:02d}/22 x -O0,-O2")
 
         for name in sorted(set(row[0] for row in SAMPLE_CASES)):
             executable = temp / Path(name).stem
