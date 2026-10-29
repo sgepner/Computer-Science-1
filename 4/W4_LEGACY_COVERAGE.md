@@ -3,7 +3,7 @@
 **Checkpoint:** W4.0 — audyt, bez modernizacji kodu.  
 **Repozytorium:** `sgepner/Computer-Science-1`, gałąź robocza `feature/W4-modernizacja`.  
 **Punkt odniesienia:** `master` = `f2e4c94b83431c8ee37267cee3b9688e11751c24` (2026-10-29).  
-**Status W4.0:** `VERIFIED PASS`; **W4.1:** `VERIFIED PASS`; **W4.2:** `IMPLEMENTED / VERIFICATION PENDING`.
+**Status W4.0–W4.2:** `VERIFIED PASS`; **W4.3:** `IMPLEMENTED / VERIFICATION PENDING`.
 
 ## 1. Źródła audytu i ich stan
 
@@ -173,8 +173,8 @@ Używać prostych wartości dokładnie reprezentowalnych do obowiązkowych test�
 
 - **W4.0** — audyt i zamrożenie zakresu: `VERIFIED PASS`.
 - **W4.1** — konstrukcja nowego `4/Wykład 4.ipynb`: `VERIFIED PASS`.
-- **W4.2** — wyrażenia logiczne, de Morgan, short-circuit: `IMPLEMENTED / VERIFICATION PENDING`.
-- **W4.3** — `if`, `else`, `else if`, zagnieżdżenia, `?:`, `switch`: `PENDING`.
+- **W4.2** — wyrażenia logiczne, de Morgan, short-circuit: `VERIFIED PASS` (d38b30d; 23 uruchomienia).
+- **W4.3** — `if`, `else`, `else if`, zagnieżdżenia, `?:`, `switch`: `IMPLEMENTED / VERIFICATION PENDING`.
 - **W4.4** — grafy przepływu sterowania: `PENDING`.
 - **W4.5** — solver równania kwadratowego i przypadki brzegowe: `PENDING`.
 - **W4.6** — funkcje i materiał uzupełniający: `PENDING`.
@@ -191,3 +191,9 @@ Używać prostych wartości dokładnie reprezentowalnych do obowiązkowych test�
 **W4.1 — VERIFIED PASS (dodo, 2026-10-29).** Na `124fcac1c9bb9f7dad5f5c2ae3006fef2950410f` test zwrócił `W4.1 STRUCTURE PASS`, a pierwsza komórka C wykonała oczekiwane trzy wiersze. `git diff --check` bez uwag. Skróty prowadzącego z rewizji `2ef0cdfe8e563b512ef1cfa582ceca7d143b4a02` zachowano, łącznie z zapisanym wynikiem pierwszej komórki.
 
 **W4.2 — IMPLEMENTED / VERIFICATION PENDING.** Dodano przykłady wyrażeń logicznych, de Morgana, priorytetów i short-circuit oraz zabezpieczenia przed dzieleniem przez zero. Przed commitem programy testowano przez GCC C11 `-Wall -Wextra -Werror -pedantic` (`-O0` i `-O2`, 6 programów, 9 wariantów). Nowa rewizja wymaga lokalnego `python3 4/check_w4_logic.py` i sprawdzenia komórek Jupyter C. Zakres W4.3+ pozostaje poza checkpointem.
+
+## 12. W4.2 zamknięty; W4.3 do weryfikacji
+
+**W4.2 VERIFIED PASS (2026-10-29, dodo):** HEAD `d38b30d82d6739c9f2300f0e19bc84d81bd438f4`; `python3 4/check_w4_logic.py` — 7 programów pod `-O0`/`-O2` i 9 wariantów, razem **23 wykonania PASS**. `git diff --check HEAD^` bez błędów. Końcowa ocena prezentacji notebooka pozostaje w W4.8.
+
+**W4.3 IMPLEMENTED / VERIFICATION PENDING:** 7 nowych komórek C: blok instrukcji, niezależne `if` kontra łańcuch `else if`, zagnieżdżenie, poprawna składniowo pułapka `if (a = 7)` (sprawdzane ostrzeżenie GCC), `?:`, `switch` z `break`, celowy fall-through. Test `4/check_w4_branching.py` przewiduje 14 wykonań w `-O0`/`-O2` i 14 wariantów danych. Uruchomienie i odbiór testów lokalnych dopiero otwiera gate. W4.4 (grafy) nierozpoczęty.
