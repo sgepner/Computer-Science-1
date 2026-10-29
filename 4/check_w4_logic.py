@@ -27,8 +27,40 @@ tabele = [
 assert len(tabele) == 1
 wiersze = [w for w in tabele[0].splitlines() if w.startswith("|")]
 assert len(wiersze) == 6, f"Oczekiwano 6 linii tabeli: {wiersze}"
-assert wiersze[0] == "| p | q | AND | OR | NOT p |"
-assert all(w.count("|") == 6 for w in wiersze), "Nadmiarowe separatory tabeli"
+def kolumny(wiersz):
+    """Dzieli wiersz Markdown, uwzględniając znaki poprzedzone \."""
+    from html import unescape
+
+    assert wiersz.startswith("|") and wiersz.endswith("|")
+    pola = []
+    pole = []
+    i = 1
+    while i < len(wiersz) - 1:
+        if wiersz[i] == "\\" and i + 1 < len(wiersz) - 1:
+            pole.append(wiersz[i + 1])
+            i += 2
+        elif wiersz[i] == "|":
+            pola.append(unescape("".join(pole).strip()))
+            pole = []
+            i += 1
+        else:
+            pole.append(wiersz[i])
+            i += 1
+    pola.append(unescape("".join(pole).strip()))
+    return pola
+
+wartosci = [kolumny(w) for w in wiersze]
+assert wartosci == [
+    ["p", "q", "&&", "||", "!p"],
+    [":-:", ":-:", ":--:", ":--:", ":--:"],
+    ["0", "0", "0", "0", "1"],
+    ["0", "1", "0", "1", "1"],
+    ["1", "0", "0", "1", "0"],
+    ["1", "1", "1", "1", "0"],
+], f"Niepoprawne kolumny lub wartości tabeli: {wartosci}"
+assert len(kolumny("| p | q | && | || | !p |")) != 5, (
+    "Nie wykryto nieescapowanego ||"
+)
 
 
 wyniki = [
