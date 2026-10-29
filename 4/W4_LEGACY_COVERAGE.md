@@ -3,7 +3,7 @@
 **Checkpoint:** W4.0 — audyt, bez modernizacji kodu.  
 **Repozytorium:** `sgepner/Computer-Science-1`, gałąź robocza `feature/W4-modernizacja`.  
 **Punkt odniesienia:** `master` = `f2e4c94b83431c8ee37267cee3b9688e11751c24` (2026-10-29).  
-**Status:** `IMPLEMENTED / VERIFICATION PENDING` — mapa sporządzona; lokalny gate i akceptacja przed W4.1 pozostają otwarte.
+**Status W4.0:** `VERIFIED PASS`; **W4.1:** `VERIFIED PASS`; **W4.2:** `IMPLEMENTED / VERIFICATION PENDING`.
 
 ## 1. Źródła audytu i ich stan
 
@@ -171,9 +171,9 @@ Używać prostych wartości dokładnie reprezentowalnych do obowiązkowych test�
 
 ## 10. Roadmapa modernizacji — stan po przygotowaniu audytu
 
-- **W4.0** — audyt i zamrożenie zakresu: `IMPLEMENTED / VERIFICATION PENDING`.
-- **W4.1** — konstrukcja nowego `4/Wykład 4.ipynb`: `PENDING`.
-- **W4.2** — wyrażenia logiczne, de Morgan, short-circuit: `PENDING`.
+- **W4.0** — audyt i zamrożenie zakresu: `VERIFIED PASS`.
+- **W4.1** — konstrukcja nowego `4/Wykład 4.ipynb`: `VERIFIED PASS`.
+- **W4.2** — wyrażenia logiczne, de Morgan, short-circuit: `IMPLEMENTED / VERIFICATION PENDING`.
 - **W4.3** — `if`, `else`, `else if`, zagnieżdżenia, `?:`, `switch`: `PENDING`.
 - **W4.4** — grafy przepływu sterowania: `PENDING`.
 - **W4.5** — solver równania kwadratowego i przypadki brzegowe: `PENDING`.
@@ -184,3 +184,10 @@ Używać prostych wartości dokładnie reprezentowalnych do obowiązkowych test�
 **Uwaga o numeracji:** W4.0–W4.8 powyżej to **checkpointy projektu**. W tabeli z ` 2 numeracja W4.0–W4.8 opisuje **rozdziały notebooka**; oba podziały nie są tożsame.
 
 **Następny autoryzowany krok po pozytywnym gate:** tylko **W4.1**, bez wyprzedzania prac W4.2–W4.8.
+
+
+## 11. Weryfikacja W4.1 i otwarcie W4.2
+
+**W4.1 — VERIFIED PASS (dodo, 2026-10-29).** Na `124fcac1c9bb9f7dad5f5c2ae3006fef2950410f` test zwrócił `W4.1 STRUCTURE PASS`, a pierwsza komórka C wykonała oczekiwane trzy wiersze. `git diff --check` bez uwag. Skróty prowadzącego z rewizji `2ef0cdfe8e563b512ef1cfa582ceca7d143b4a02` zachowano, łącznie z zapisanym wynikiem pierwszej komórki.
+
+**W4.2 — IMPLEMENTED / VERIFICATION PENDING.** Dodano przykłady wyrażeń logicznych, de Morgana, priorytetów i short-circuit oraz zabezpieczenia przed dzieleniem przez zero. Przed commitem programy testowano przez GCC C11 `-Wall -Wextra -Werror -pedantic` (`-O0` i `-O2`, 6 programów, 9 wariantów). Nowa rewizja wymaga lokalnego `python3 4/check_w4_logic.py` i sprawdzenia komórek Jupyter C. Zakres W4.3+ pozostaje poza checkpointem.
