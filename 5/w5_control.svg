@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="Drogi break i continue w trzech rodzajach pętli">
+<rect width="960" height="310" fill="#f5f7fb"/>
+<style>text{font:19px sans-serif;fill:#18263a}.head{font-size:23px;font-weight:bold}.line{stroke:#176b91;stroke-width:3;fill:none}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6" fill="#176b91"/></marker></defs>
+<text x="30" y="40" class="head">continue: pomiń resztę ciała</text>
+<text x="30" y="90">for</text><path class="line" d="M160 84 H310" marker-end="url(#a)"/><text x="330" y="90">update</text><path class="line" d="M440 84 H570" marker-end="url(#a)"/><text x="590" y="90">warunek</text>
+<text x="30" y="140">while</text><path class="line" d="M160 134 H570" marker-end="url(#a)"/><text x="590" y="140">warunek</text>
+<text x="30" y="190">do…while</text><path class="line" d="M160 184 H570" marker-end="url(#a)"/><text x="590" y="190">warunek końcowy</text>
+<text x="30" y="245" class="head">break</text><path class="line" d="M160 239 H310" marker-end="url(#a)"/><text x="330" y="245">za najbliższą pętlę lub switch</text>
+<text x="30" y="285">W zagnieżdżeniu pętla zewnętrzna działa dalej.</text></svg>
