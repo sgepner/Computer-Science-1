@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="590" viewBox="0 0 1250 590">
+<title>Niezależne if i łańcuch else if</title>
+<rect width="1250" height="590" fill="white"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#344960"/></marker></defs>
+<g font-family="DejaVu Sans, sans-serif"><path d="M 330 129 L 375 129" data-from="ind1" data-to="outind1" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 330 272 L 375 272" data-from="ind2" data-to="outind2" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 330 415 L 375 415" data-from="ind3" data-to="outind3" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 232 164 L 232 231" data-from="ind1" data-to="ind2" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 470 155 L 470 203 L 232 203 L 232 231" data-from="outind1" data-to="ind2" data-cond="po wypisaniu" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 232 307 L 232 374" data-from="ind2" data-to="ind3" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 470 298 L 470 346 L 232 346 L 232 374" data-from="outind2" data-to="ind3" data-cond="po wypisaniu" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 232 450 L 232 514" data-from="ind3" data-to="endind" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 470 441 L 470 478 L 310 478 L 310 541" data-from="outind3" data-to="endind" data-cond="po wypisaniu" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 955 133 L 994 133" data-from="chain1" data-to="negative" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 852 171 L 852 242" data-from="chain1" data-to="chain2" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 955 286 L 994 286" data-from="chain2" data-to="zero" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 852 324 L 852 412" data-from="chain2" data-to="positive" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<g id="ind1"><polygon points="232.5,95 330,129.5 232.5,164 135,129.5" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="232.5" y="136.3" text-anchor="middle" font-size="20" fill="#152238">x &gt; 0?</text></g>
+<g id="outind1"><rect x="380" y="103" width="175" height="52" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="467.5" y="135.8" text-anchor="middle" font-size="20" fill="#152238">wypisz A</text></g>
+<g id="ind2"><polygon points="232.5,238 330,272.5 232.5,307 135,272.5" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="232.5" y="279.3" text-anchor="middle" font-size="20" fill="#152238">x &lt; 10?</text></g>
+<g id="outind2"><rect x="380" y="246" width="175" height="52" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="467.5" y="278.8" text-anchor="middle" font-size="20" fill="#152238">wypisz B</text></g>
+<g id="ind3"><polygon points="232.5,381 330,415.5 232.5,450 135,415.5" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="232.5" y="422.3" text-anchor="middle" font-size="20" fill="#152238">x == 7?</text></g>
+<g id="outind3"><rect x="380" y="389" width="175" height="52" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="467.5" y="421.8" text-anchor="middle" font-size="20" fill="#152238">wypisz C</text></g>
+<g id="endind"><rect x="155" y="518" width="155" height="47" rx="11" fill="#eff8ed" stroke="#27364b" stroke-width="2"/><text x="232.5" y="548.0" text-anchor="middle" font-size="19" fill="#152238">dalej</text></g>
+<g id="chain1"><polygon points="852.5,95 955,133 852.5,171 750,133" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="852.5" y="139.8" text-anchor="middle" font-size="20" fill="#152238">x &lt; 0?</text></g>
+<g id="negative"><rect x="1000" y="103" width="200" height="55" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="1100" y="137.3" text-anchor="middle" font-size="20" fill="#152238">wypisz ujemne</text></g>
+<g id="chain2"><polygon points="852.5,248 955,286 852.5,324 750,286" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="852.5" y="292.8" text-anchor="middle" font-size="20" fill="#152238">x == 0?</text></g>
+<g id="zero"><rect x="1000" y="256" width="200" height="55" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="1100" y="290.3" text-anchor="middle" font-size="20" fill="#152238">wypisz zero</text></g>
+<g id="positive"><rect x="753" y="417" width="198" height="55" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="852" y="451.3" text-anchor="middle" font-size="20" fill="#152238">wypisz dodatnie</text></g>
+<text x="320" y="38" text-anchor="middle" font-size="27" font-weight="bold" fill="#152238">Trzy niezależne if</text>
+<text x="930" y="38" text-anchor="middle" font-size="27" font-weight="bold" fill="#152238">Jeden łańcuch if / else if / else</text>
+<text x="320" y="68" text-anchor="middle" font-size="18" font-weight="normal" fill="#152238">Każdy warunek sprawdzamy osobno</text>
+<text x="930" y="68" text-anchor="middle" font-size="18" font-weight="normal" fill="#152238">Po pierwszym spełnionym warunku kończymy wybór</text>
+<text x="351" y="117" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="351" y="260" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="351" y="403" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="205" y="207" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="205" y="349" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="205" y="483" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="974" y="119" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="826" y="208" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="974" y="271" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="826" y="364" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="965" y="538" text-anchor="middle" font-size="19" font-weight="normal" fill="#152238">W łańcuchu wykonywana jest dokładnie jedna gałąź</text></g></svg>

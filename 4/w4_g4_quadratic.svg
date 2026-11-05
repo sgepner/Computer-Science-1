@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="750" viewBox="0 0 1400 750">
+<title>Pełne drzewo decyzji równania kwadratowego</title>
+<rect width="1400" height="750" fill="white"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#344960"/></marker></defs>
+<g font-family="DejaVu Sans, sans-serif"><path d="M 560 113 L 404 113" data-from="input" data-to="error" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 698 154 L 698 195" data-from="input" data-to="a0" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 560 243 L 345 243 L 345 331" data-from="a0" data-to="b0" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 835 243 L 1080 243 L 1080 331" data-from="a0" data-to="delta" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 220 377 L 220 474" data-from="b0" data-to="c0" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 470 377 L 533 377 L 533 482" data-from="b0" data-to="linear" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 159 559 L 129 559 L 129 626" data-from="c0" data-to="identity" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 281 559 L 410 559 L 410 626" data-from="c0" data-to="contradiction" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1080 398 L 1080 429" data-from="delta" data-to="dneg" data-cond="" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 945 475 L 856 475 L 856 584" data-from="dneg" data-to="no_real" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1215 475 L 1220 475 L 1220 563" data-from="dneg" data-to="dzero" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1152 648 L 1152 674" data-from="dzero" data-to="one" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1287 648 L 1295 648 L 1295 674" data-from="dzero" data-to="two" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<g id="input"><polygon points="697.5,72 835,113 697.5,154 560,113" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="697.5" y="120.1" text-anchor="middle" font-size="21" fill="#152238">sscanf(...) == 3?</text></g>
+<g id="error"><rect x="175" y="89" width="222" height="57" rx="11" fill="#fff1f0" stroke="#27364b" stroke-width="2"/><text x="286" y="124.6" text-anchor="middle" font-size="21" fill="#152238">błąd danych</text></g>
+<g id="a0"><polygon points="697.5,202 835,243 697.5,284 560,243" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="697.5" y="250.5" text-anchor="middle" font-size="22" fill="#152238">a == 0?</text></g>
+<g id="b0"><polygon points="345,338 470,377 345,416 220,377" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="345" y="384.1" text-anchor="middle" font-size="21" fill="#152238">b == 0?</text></g>
+<g id="delta"><rect x="945" y="337" width="270" height="61" rx="11" fill="#f1f6fa" stroke="#27364b" stroke-width="2"/><text x="1080" y="374.0" text-anchor="middle" font-size="19" fill="#152238">delta = b*b - 4*a*c</text></g>
+<g id="c0"><polygon points="220,481 345,520 220,559 95,520" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="220" y="527.1" text-anchor="middle" font-size="21" fill="#152238">c == 0?</text></g>
+<g id="linear"><rect x="400" y="488" width="266" height="62" rx="11" fill="#eff8ed" stroke="#27364b" stroke-width="2"/><text x="533" y="526.1" text-anchor="middle" font-size="21" fill="#152238">liniowe: x = -c / b</text></g>
+<g id="identity"><rect x="12" y="632" width="233" height="65" rx="11" fill="#eff8ed" stroke="#27364b" stroke-width="2"/><text x="128.5" y="671.0" text-anchor="middle" font-size="19" fill="#152238">nieskończenie wiele</text></g>
+<g id="contradiction"><rect x="290" y="632" width="240" height="65" rx="11" fill="#fff1f0" stroke="#27364b" stroke-width="2"/><text x="410" y="671.3" text-anchor="middle" font-size="20" fill="#152238">brak rozwiązań</text></g>
+<g id="dneg"><polygon points="1080,436 1215,475 1080,514 945,475" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="1080" y="482.1" text-anchor="middle" font-size="21" fill="#152238">delta &lt; 0?</text></g>
+<g id="no_real"><rect x="743" y="591" width="233" height="66" rx="11" fill="#fff1f0" stroke="#27364b" stroke-width="2"/><text x="859.5" y="630.8" text-anchor="middle" font-size="20" fill="#152238">brak rzeczywistych</text></g>
+<g id="dzero"><polygon points="1220,570 1355,609 1220,648 1085,609" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="1220" y="616.1" text-anchor="middle" font-size="21" fill="#152238">delta == 0?</text></g>
+<g id="one"><rect x="1013" y="681" width="170" height="54" rx="11" fill="#eff8ed" stroke="#27364b" stroke-width="2"/><text x="1098" y="714.8" text-anchor="middle" font-size="20" fill="#152238">jeden x</text></g>
+<g id="two"><rect x="1210" y="681" width="180" height="54" rx="11" fill="#eff8ed" stroke="#27364b" stroke-width="2"/><text x="1300" y="714.8" text-anchor="middle" font-size="20" fill="#152238">dwa x1, x2</text></g>
+<text x="700" y="42" text-anchor="middle" font-size="29" font-weight="bold" fill="#152238">Klasyfikacja równania: a x² + b x + c = 0</text>
+<text x="483" y="99" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="665" y="185" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="445" y="227" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="933" y="227" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="187" y="457" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="496" y="362" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="119" y="591" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="346" y="582" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="897" y="460" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="1244" y="521" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text>
+<text x="1123" y="666" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">tak</text>
+<text x="1325" y="667" text-anchor="middle" font-size="16" font-weight="normal" fill="#152238">nie</text></g></svg>

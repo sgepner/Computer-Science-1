@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+<rect width="900" height="300" fill="white"/><g font-family="sans-serif" fill="black" stroke="black" stroke-width="2">
+<text x="450" y="30" text-anchor="middle" font-size="22" stroke="none">Short-circuit: prawa strona</text>
+<rect x="55" y="70" width="330" height="75" fill="white"/><text x="220" y="100" text-anchor="middle" font-size="20" stroke="none">0 &amp;&amp; P</text><text x="220" y="128" text-anchor="middle" font-size="17" stroke="none">P pominięte → wynik 0</text>
+<rect x="515" y="70" width="330" height="75" fill="white"/><text x="680" y="100" text-anchor="middle" font-size="20" stroke="none">1 || P</text><text x="680" y="128" text-anchor="middle" font-size="17" stroke="none">P pominięte → wynik 1</text>
+<rect x="55" y="190" width="330" height="75" fill="white"/><text x="220" y="220" text-anchor="middle" font-size="20" stroke="none">1 &amp;&amp; P</text><text x="220" y="248" text-anchor="middle" font-size="17" stroke="none">P obliczone</text>
+<rect x="515" y="190" width="330" height="75" fill="white"/><text x="680" y="220" text-anchor="middle" font-size="20" stroke="none">0 || P</text><text x="680" y="248" text-anchor="middle" font-size="17" stroke="none">P obliczone</text>
+</g></svg>

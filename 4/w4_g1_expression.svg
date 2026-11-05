@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<rect width="900" height="360" fill="white"/><g font-family="sans-serif" fill="black" stroke="black" stroke-width="2">
+<text x="450" y="28" text-anchor="middle" font-size="22" stroke="none">Drzewo wyrażenia: p || q &amp;&amp; r</text>
+<line x1="450" y1="55" x2="260" y2="105"/><line x1="450" y1="55" x2="640" y2="105"/>
+<ellipse cx="450" cy="55" rx="42" ry="22" fill="white"/><text x="450" y="62" text-anchor="middle" font-size="20" stroke="none">||</text>
+<ellipse cx="260" cy="105" rx="42" ry="22" fill="white"/><text x="260" y="112" text-anchor="middle" font-size="20" stroke="none">p</text>
+<ellipse cx="640" cy="105" rx="42" ry="22" fill="white"/><text x="640" y="112" text-anchor="middle" font-size="20" stroke="none">&amp;&amp;</text>
+<line x1="640" y1="127" x2="550" y2="177"/><line x1="640" y1="127" x2="730" y2="177"/>
+<ellipse cx="550" cy="177" rx="42" ry="22" fill="white"/><text x="550" y="184" text-anchor="middle" font-size="20" stroke="none">q</text>
+<ellipse cx="730" cy="177" rx="42" ry="22" fill="white"/><text x="730" y="184" text-anchor="middle" font-size="20" stroke="none">r</text>
+<text x="450" y="255" text-anchor="middle" font-size="18" stroke="none">Najpierw struktura: ! &gt; &amp;&amp; &gt; ||</text>
+<text x="450" y="290" text-anchor="middle" font-size="18" stroke="none">Nawiasy mogą zmienić drzewo, nie tylko wygląd zapisu.</text>
+</g></svg>
