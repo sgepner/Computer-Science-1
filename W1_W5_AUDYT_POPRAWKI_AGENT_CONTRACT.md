@@ -162,3 +162,18 @@ Na końcu podaj:
 ## 11. Instrukcja startowa do lokalnego Codex
 
 Pracuj autonomicznie w trybie CONTINUOUS na `feature/W1-W5-audyt-poprawki`. Przeczytaj CAŁY niniejszy kontrakt i źródła W1–W5, wykonaj checkpointy CP0→CP8, przechodź przez PASS bez czekania na „kontynuuj”, naprawiaj FAIL przed dalszą pracą. Nie zmieniaj `master` i nie merge. Zadbaj o najmniejszy konieczny zakres zmian, niezależną weryfikację i pełny raport końcowy. Jeżeli dostępne są lokalne instrukcje AGENTS.md, zastosuj je w zakresie niesprzecznym z tym kontraktem.
+
+
+## 12. Stan wykonania i dowody (wyłącznie ta gałąź)
+
+Tryb CONTINUOUS, zakres CP0–CP8 zatwierdzony 2026-11-06. Koordynator odpowiada za integrację i testy. Stan Git zawsze sprawdzaj przez `git rev-parse HEAD`; dokument nie zawiera własnego SHA.
+
+### CP0 — PASS
+
+- Baza master: `9a42b0348e74c25795dad19a1bafc25f349a9d92`; wejściowy HEAD: `5b5b6c10f8f3fe7881066c68474d3b955bcdc9c0`.
+- Czysty worktree: `/home/sgepner/.codex/worktrees/w1-w5-audit/Lecture`, gałąź `feature/W1-W5-audyt-poprawki`. Pierwotny katalog pozostawiony na odłączonym wejściowym HEAD; wszystkie istniejące zmiany i pliki nieśledzone zachowane. Kopia diffu: `/tmp/w1-w5-audit/original-local.patch`. Audyt i wdrożenie dotyczą wersji zapisanej w Git, nie lokalnych niezatwierdzonych edycji.
+- Komplet 20/20 wskazanych plików źródłowych istnieje. Brak lokalnych AGENTS/CURRENT/ROADMAP/DECISIONS; niniejszy kontrakt jest jedynym planem i rejestrem.
+- GCC 11.4.0, Python 3.10, nbformat i jupyter_client dostępne. Kernel C uruchomiony z istniejącego `/home/sgepner/Virtualenv/jupyter/bin/python`; rzeczywisty test Jupyter zwrócił `C_KERNEL_OK`. Tymczasowy kernelspec: `/tmp/w1-w5-audit/jupyter/kernels/c/kernel.json`; bez zmiany konfiguracji użytkownika. Lokalna komunikacja kernela wymaga uruchomienia poza ograniczeniem gniazd sandboxa.
+- PDF: tekst wszystkich stron odczytany; `/usr/bin/pdftoppm` wyrenderował 17/20/13/12/16 stron. Koordynator obejrzał zestawienia wszystkich stron; drobne szczegóły kodu sprawdzane w TeX/tekście. Bundlowany renderer ma konflikt GLIBC, rozwiązany użyciem systemowego.
+- Istniejące `2/check_w2.py` i `3/check_w3.py` wykryły niezgodne liczby komórek już na wejściu (134 zamiast 133; 25 zamiast 22). To ustalenie bazowe, nie PASS regresji; naprawa w CP6/CP2 przy zachowaniu dotychczasowych wyroczni wyników.
+- Dowody i ekstrakty robocze: `/tmp/w1-w5-audit/`. Następny checkpoint: CP1, pełna macierz.
