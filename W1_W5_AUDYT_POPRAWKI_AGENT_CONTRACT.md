@@ -1,6 +1,6 @@
 # Kontrakt wykonawczy: audyt i korekty dydaktyczne W1–W5
 
-Status: **DO IMPLEMENTACJI — praca autonomiczna**  
+Status: **COMPLETE — CP0–CP8 zakończone; dowody i jawne ograniczenia środowiska w sekcji 12**
 Repozytorium: `sgepner/Computer-Science-1`  
 Gałąź robocza: `feature/W1-W5-audyt-poprawki`  
 Punkt odniesienia: aktualny `master` z chwili utworzenia gałęzi, 2026-11-06.  
@@ -529,3 +529,97 @@ Pełny raport roboczy: /tmp/w1-w5-audit/cp7-independent.md. Koordynator zdekodow
 Wszystkie merytoryczne MISSING z CP1 zamknięte: W3 IO→w3-io-*; W4 pojedyncza instrukcja/średnik→w4-if-*; zasięg/czas życia→w4-scope-*; zwracane wartości/prototypy/dekompozycja→w4-quadratic-b; oba równania→w4-quadratic-a/b/parity; W5 parzyste/nieparzyste→W5.4 dwa nowe programy, float→W5.4 ostatni eksperyment, gra→W5.7 terminalowy while/scanf/break. W1/W2 przeniesienia sprecyzowano przed macierzami; W4 funkcje/linkowanie→końcowa sekcja w4-quadratic-parity. Brak nierozpoznanych zależności W3→W4→W5: puts/fputs poznane w W3, if zapowiedziany przed IO, pętle w W5, tablica znaków i wskaźnikowe zapisy jawnie ograniczone/zapowiedziane. Nie zmieniano naukowych kontraktów ani master.
 
 Następny i ostatni checkpoint: CP8 — testy na końcowej zapisanej rewizji i odbiór selektywnych plików. Znana wada stock-kernela nie jest ukryta przez PASS przeglądu.
+
+### CP8 — PASS; kampania COMPLETE (CONTINUOUS)
+
+Wszystkie CP0–CP8 wykonane. Ostatnia pełna weryfikacja źródeł i testów: `cff50bbe946473eae72e8f304a8f1b7dbdc244f5`. Po tym punkcie commit odbiorczy zmienia wyłącznie niniejszy raport; dokładny końcowy SHA gałęzi: `git rev-parse feature/W1-W5-audyt-poprawki`. Nie utożsamiamy SHA testowanego z samoodnoszącym SHA dokumentu.
+
+#### Synteza pokrycia i odbioru
+
+| Wykład | Notebook źródłowy | PDF/TeX | Wynik materiału i testów |
+|:--|:--|:--|:--|
+| W1 | COVERED/EXTENDED; sizeof MOVED do W2 | COVERED/EXTENDED; organizacja w osobnym istniejącym handoucie | PASS — 83 komórki / 24 kodowe; 11 poprawnych programów, fragmenty i błędy jawne |
+| W2 | EXTENDED; zwracanie printf MOVED do W3; brak błędnego uogólnienia o wydajności prefiksu | EXTENDED; historyczne błędy typu void/char i założenia platformowe wyjaśnione | PASS — 133/37; inicjalizacja, typy, arytmetyka, IEEE754, ASCII, operatory |
+| W3 | EXTENDED; powtórki operatorów MOVED do W2 | EXTENDED; cały printf/scanf/math i żart zachowane, błędy PDF skorygowane | PASS — 62/24; dodane IO i bezpieczne terminalowe fgets |
+| W4 | EXTENDED; dwa warianty równania i funkcje odtworzone bez globalnego stanu | EXTENDED; deklaracje/linkowanie i zakres parametrów jawne, brak fałszywego przeciążania w C | PASS — 50/21; A/B, scope/lifetime i rozgałęzienia |
+| W5 | EXTENDED; redundantne/błędne sumy wszystkich harmonicznych INTENTIONALLY OMITTED z poprawnym odpowiednikiem | EXTENDED; schematy pętli, żart i Fourier zachowane | PASS — 68/20; float, kontrasty, gra i Fourier |
+
+Uzupełnienie kompletności macierzy CP1: angielski W1 ma 52 komórki, W2 67, W3 25, W4 58, W5 65 (łącznie 267). Puste komórki EN W1 c51, W2 c66, W4 c57, W5 c64 są INTENTIONALLY OMITTED jako brak treści; temat printf z W2 c65 MOVED do W3, nie usunięty. W1 PL c80 jest Markdown z syntezą kompilacji, nie programem — omyłka dodatkowej klasyfikacji recenzenta została odrzucona. Wszystkie 263 niepuste komórki i tematy 78 stron prezentacji mają rozstrzygnięcie. Stany MISSING w początkowych macierzach dokumentują wejście, nie nierozwiązane końcowe braki. Brak końcowych kluczowych MISSING.
+
+#### Końcowe polecenia i dowody
+
+Uruchomione na cff50bbe946473eae72e8f304a8f1b7dbdc244f5, wszystkie zakończyły się exit 0:
+
+```bash
+python3 check_w1_w5.py
+python3 2/check_w2.py
+python3 3/check_w3.py
+python3 4/check_w4.py
+python3 5/check_w5.py
+python3 check_w1_w5.py --kernel \
+  --kernel-python /home/sgepner/Virtualenv/jupyter/bin/python \
+  --join-output-threads \
+  --kernel-evidence /tmp/w1-w5-audit/cp8-kernel-results.json
+```
+
+- Struktura/zasoby/proweniencja PASS: pięć nbformat.validate, kernel c, 17 istniejących lokalnych grafik; wszystkie zdekodowane lub wyrenderowane i obejrzane w zestawieniu, GIF 53/53 klatki. Wszystkie 15 historycznych notebooków EN/PDF/TeX identyczne bajtowo z bazą.
+- W1 PASS: 22 wykonania poprawnych programów, 5 fragmentów kompilowanych do obiektu w jawnym kontekście oraz 8 oczekiwanych diagnostyk. Istniejące nieużyte zmienne dają ostrzeżenia, nie ukrywamy ich.
+- W2 PASS: 70 wykonań, signed overflow wyłącznie składnia, niepoprawne void EXPECTED-FAIL. Dodatkowo 14 rzeczywistych wierszy tabel reprezentacji (znak/wykładnik/ułamek/znacząca) i 5 wartości podnormalnych/granicznych sprawdzonych niezależnie przez Python struct i Decimal, bez modelowych estymacji.
+- W3 PASS: 48 wykonań notebooka + 46 prób istniejących programów terminalowych + 16 prób fgets, w tym granice N−1/N i EOF. Surowe bajty CR/BS zachowane.
+- W4 PASS: 52 zwykłe/kontrolowane wykonania IF + 7 granicznych logiki; EXPECTED-FAIL zasięgu; 64 A/B dla 16 danych; 12 asercji etapów czystych; klasy/status/liczby/rtol 1e-8/atol 1e-9/residuum <1e-8; 13 krawędzi i etykiety SVG. Kompilacja C11 -Wall -Wextra -pedantic; poprawne zmienione programy także -Werror, antywzorce mają oczekiwaną diagnostykę.
+- W5 PASS: 56 zwykłych/prób gry, 12 wariantów Fourier N/m, 42 wartości surowe Fourier z testami 1e-12, dwa dodatkowe graniczne do-while; niezależny binary32 float 11 punktów przy O0/O2; EXPECTED-FAIL i/j. Deterministyczne wejście, timeout procesów, brak blokującego stdin w kodzie notebooka.
+- Jupyter C PASS w jawnie określonym środowisku z poprawionym transportem: W1 11, W2 35, W3 24, W4 21, W5 20 = 111 rzeczywistych wykonań, dokładny stdout zgodny z osobnym GCC, brak stderr/error. Test nie jest samodzielną wyrocznią naukową; zapewniają ją osobne testy wyników i numeryczne.
+- Git PASS: czysty worktree przed zamknięciem; master pozostał 9a42b0348e74c25795dad19a1bafc25f349a9d92, brak push/merge/rebase/PR. Pierwotny lokalny diff identyczny bajtowo z kopią CP0, SHA256 3ba2e6f4dfec7e9841917b4bbba6a3afa12ee5cda82f9d779462dadc795435f3; plików nieśledzonych nie ruszano.
+
+Pełne logi: /tmp/w1-w5-audit/cp8-{structure-w1,w2,w3,w4,w5,kernel}.log; wynik 111 komórek: cp8-kernel-results.json. Manifest sum logów: cp8-evidence-sha256.txt w tym samym katalogu. Przegląd niezależny: cp7-independent.md. Testy trwają lokalnie kilkanaście sekund, nie wymagają symulacji/HPC.
+
+Wersje: GCC 11.4.0; Python 3.10.12; podstawowy nbformat 5.1.3 i jupyter_client 7.1.2. Interpreter kernela /home/sgepner/Virtualenv/jupyter/bin/python: jupyter-c-kernel 1.2.2, ipykernel 7.2.0, jupyter-client 8.8.0, nbformat 5.10.4. Kernelspec/driver tymczasowy, bez zmian w instalacji.
+
+#### Granice i otwarte ryzyka (nie ukryte przez PASS)
+
+- **UNVERIFIED: niezawodność transportu fabrycznie zainstalowanego kernela.** Zaobserwowano zgubiony stdout; niezależny przegląd źródła potwierdził wyścig. Pełny PASS dotyczy rzeczywistego CKernel z jawnym tymczasowym dołączeniem wątków stdout/stderr i sprawdzeniem timeout. Kod poprawki jest częścią check_w1_w5.py; nie zmieniono kompilatora, programu ani asercji. Instalacja użytkownika pozostała nietknięta. Wcześniejsze pojedyncze pozytywne próby stock nie dowodzą usunięcia wady.
+- **UNVERIFIED: pełny interaktywny wygląd we wszystkich wersjach interfejsu Jupyter oraz odtwarzanie animacji w przeglądarce.** Zweryfikowano źródła/strukturę, rzeczywiste wykonanie C, wszystkie ścieżki offline, dekodowanie grafik i klatek GIF oraz oględziny ilustracji; nie deklarujemy przetestowania dowolnego frontendu.
+- Solver to dydaktyczny zwykły wzór dla umiarkowanych skończonych współczynników i reprezentowalnych działań; nie jest odpornym numerycznie solverem dla całego zakresu double. Polityka delta==0 zachowana świadomie zgodnie z kontraktem.
+- Scanf zakłada reprezentowalne liczby; gra nie waliduje całych wierszy ani arbitralnie wielkich tokenów. Ograniczenie jest jawne. Testy wyników i binary32 opierają się na opisanej konfiguracji Linux/GCC/IEEE754.
+- Lokalne edycje użytkownika W3–W5 z pierwotnego katalogu nie zostały automatycznie scalone z wynikiem. Pozostają bez zmian na odłączonym wejściowym HEAD; przed późniejszą integracją właściciel musi świadomie wybrać, czy je zachować/przenieść. Audyt odnosi się do wersji Git, zgodnie z decyzją CP0.
+
+Nie ma pozostałego checkpointu w zatwierdzonym zakresie. Nie ma wymaganej decyzji właściciela blokującej przygotowane materiały. Osobne polecenie jest potrzebne do przyszłego push lub selektywnej integracji do master.
+
+#### Commity wykonane lokalnie
+
+```text
+38e129f6f3419b7dd719aff8387e18e0a6ff45b5 docs: record CP0 preflight and preserve original local edits
+2376aeb8e903dc6a0d1f4dc4b217a6821dc220f4 docs: complete CP1 coverage audit of W1-W5 sources
+177e559d866f49201e47ab1b3115235c8ab2161e teach(W3): introduce bounded text IO and verify newline and fgets behavior
+82584f2b7a56a8da57537d003d47a54d1bc8def1 teach(W4): distinguish statements, blocks, scope and automatic lifetime
+6be5f826d58eab20f7716697be5ef56ef47611d5 teach(W4): compare main-only and procedural quadratic programs with parity tests
+81b4c5f0f4a48add1db27832601cd99152c05bf9 teach(W5): restore loop experiments, bounded float comparison and scanf game
+d7a1333078b3725a8b9fc13fbbda315445fe9992 fix(W1-W2): initialize examples, label expected failures and restore regression checks
+23c15c85fd3a156b90fd9400a4054fdc65712644 fix(audit): align quadratic diagram and verify full-precision Fourier invariants
+cff50bbe946473eae72e8f304a8f1b7dbdc244f5 test(W2): validate IEEE754 notebook tables against exact binary fields
+```
+
+Commit zamykający dokumentację jest następnym, dokumentacyjnym potomkiem cff50bbe946473eae72e8f304a8f1b7dbdc244f5; jego pełne SHA podaje końcowy komunikat agenta i git log. Zmiana raportu nie wymaga ponowienia niezmienionych obliczeń.
+
+#### Dokładne pliki do selektywnego przeniesienia
+
+Pięć notebooków, jedna poprawiona grafika i pięć checkerów (11 plików). Pozostałe istniejące grafiki już są w bazowym master i nie wymagają kopiowania. Żaden raport ani kontrakt agentowy nie należy do dostawy na master.
+
+Przykład przyszłego selektywnego odtworzenia z **przetestowanego SHA** (polecenia NIE wykonano; wymaga osobno upoważnionej integracji):
+
+```bash
+git restore --source=cff50bbe946473eae72e8f304a8f1b7dbdc244f5 -- \
+  '1/Wykład 1.ipynb' \
+  '2/Wykład 2.ipynb' \
+  '3/Wykład 3.ipynb' \
+  '4/Wykład 4.ipynb' \
+  '5/Wykład 5.ipynb' \
+  4/w4_g4_quadratic.svg \
+  2/check_w2.py \
+  3/check_w3.py \
+  4/check_w4.py \
+  5/check_w5.py \
+  check_w1_w5.py
+```
+
+Nie cherry-pickować całych commitów mieszających materiał z niniejszym raportem. Nie przenosić W1_W5_AUDYT_POPRAWKI_AGENT_CONTRACT.md, promptów, macierzy ani /tmp/w1-w5-audit do master. Gałąź pozostaje gotowa do powyższej selekcji; niczego nie wysłano na serwer.
