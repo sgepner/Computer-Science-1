@@ -5,6 +5,9 @@ Requires Python 3, GCC and Linux x86-64 reference assumptions for golden output.
 Leaves no binaries or saved notebook outputs in the repository.
 """
 import json
+import decimal
+import math
+import struct
 import re
 import shutil
 import subprocess
@@ -74,6 +77,40 @@ def run(command, **kwargs):
     return subprocess.run(command, text=True, capture_output=True, timeout=15, **kwargs)
 
 
+def check_ieee_tables(nb):
+    """Independently decode the actual notebook's displayed IEEE754 fields."""
+    texts = ["".join(c["source"]) for c in nb["cells"]]
+    values = [0.0, -0.0, 1.0, -1.0, math.pi, -math.pi, 100.256]
+    context = decimal.Context(prec=60)
+    D = decimal.Decimal
+    for heading, fmt, eb, p in (
+        ("### Przykłady kodowania w", ">f", 8, 23),
+        ("### Te same przykłady w", ">d", 11, 52),
+    ):
+        table = next(s for s in texts if s.startswith(heading))
+        rows = [line for line in table.splitlines() if line.startswith("| `")]
+        assert len(rows) == len(values) == 7
+        for value, line in zip(values, rows):
+            tokens = re.findall(r"`([^`]+)`", line)
+            bits = int.from_bytes(struct.pack(fmt, value), "big")
+            sign = bits >> (eb+p)
+            exponent = (bits >> p) & ((1 << eb)-1)
+            fraction = bits & ((1 << p)-1)
+            assert tokens[1] == str(sign) and tokens[2] == format(exponent, f"0{eb}b"), line
+            assert tokens[3] == format(fraction, f"0{p}b" if p == 23 else "013x"), line
+            with decimal.localcontext(context):
+                m = D(1)+D(fraction)/D(2)**p if exponent else D(0)
+                displayed = re.findall(r"\*\*([0-9.]+)\*\*", line)[0]
+                places = len(displayed.split(".")[1]) if "." in displayed else 0
+                assert abs(m-D(displayed)) <= D("0.5")*D(10)**(-places), (m, displayed)
+    subnormals = next(s for s in texts if s.startswith("### Liczby podnormalne"))
+    actual = re.findall(r"\d+\.\d+e[−-]\d+", subnormals)
+    bits = [1, 2, 1 << 22, (1 << 23)-1, 1 << 23]
+    expected = [format(struct.unpack(">f", b.to_bytes(4, "big"))[0], ".9e") for b in bits]
+    assert [s.replace("−", "-") for s in actual] == expected
+    print("PASS: W2 IEEE754 14 bit/sign/exponent/fraction/significand rows + 5 subnormal/normal boundary values")
+
+
 def main():
     assert shutil.which("gcc"), "W2.12 requires GCC"
     nb = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
@@ -88,6 +125,7 @@ def main():
     assert "INT_MAX" in "".join(cs[9][1]["source"])
     assert "void wynik;" in "".join(cs[31][1]["source"])
 
+    check_ieee_tables(nb)
     all_good = set(range(len(cs))) - {9, 31}
     assert len(all_good) == 35
     assert set(EXPECTED) == all_good, (sorted(set(EXPECTED) - all_good),
