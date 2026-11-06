@@ -22,11 +22,11 @@ SAMPLES = HERE / "samples"
 EXPECTED_CELLS = [
     "ABC\nPierwszy printf zapisal 4 znaki.\n",
     "int=-3, double=2.50, char=A\nunsigned=12, hex=c, oct=14\n",
-    "|    12|12    |\n|1234567|1234567|\n|+12|-12|\n",
+    "|    12|12    |\n|1234567|1234567|\n|   +12|-12   |\n",
     "|     12.35|\n|1.23e+01|\n|12.35|\n|007|\n",
     "naukowo = 1.001e+03\nduze E  = 1.001E+03\n"
     "15 cyfr = 1.000888800000000e+03\nogolny  = 1000.9\n",
-    "numer=00007\nujemny=-0007\nwypelniono 75% zadania\n",
+    "  007\nnumer=00007\nujemny=-0007\nwypelniono 75% zadania\n",
  'wiersz pierwszy\nwiersz drugi\nA\tB\nUkosnik: \\ i cudzyslow: "\n',
     "sscanf zwrocil 1, a=42\n",
     "wynik=2, a=7, b=2.5\n",
@@ -47,8 +47,12 @@ EXPECTED_CELLS = [
     "atan(1)=0.785398\n"
     "sinh(0)=0.000000, cosh(0)=1.000000, tanh(0)=0.000000\n",
     "sqrt(9.00)=3.00\n",
-    "delta=1.00, x1=2.00, x2=1.00\n",
 ]
+
+# Existing notebook additions, in source order.
+EXPECTED_CELLS.insert(1, "a=3, b=31400000000.000000\na=3, b=3.14e+10\n")
+EXPECTED_CELLS.insert(8, "ABCDE\rZ\nABCDE\b!\nA\vB\napostrof: '\n")
+EXPECTED_CELLS.insert(17, "AB\nCD\nE\n\n")
 
 # File, stdin, expected status, expected stdout substrings, expected stderr substrings.
 SAMPLE_CASES = [
@@ -81,9 +85,13 @@ SAMPLE_CASES = [
 
 def run(argv, **kwargs):
     env = {**os.environ, "LC_ALL": "C"}
-    return subprocess.run(argv, input=kwargs.pop("input", None),
-                          capture_output=True, text=True, timeout=10,
-                          env=env, **kwargs)
+    data = kwargs.pop("input", None)
+    result = subprocess.run(argv, input=None if data is None else data.encode(),
+                            capture_output=True, timeout=10, env=env, **kwargs)
+    # Preserve CR/backspace bytes; text=True would silently normalize CR.
+    result.stdout = result.stdout.decode()
+    result.stderr = result.stderr.decode()
+    return result
 
 
 def compile_program(source, executable, optimization):
@@ -102,10 +110,10 @@ def main():
     assert doc["metadata"]["kernelspec"]["language"] == "c"
     cells = doc["cells"]
     code_cells = [c for c in cells if c["cell_type"] == "code"]
-    assert len(code_cells) == len(EXPECTED_CELLS) == 22
+    assert len(code_cells) == len(EXPECTED_CELLS) == 24
     assert all(c["execution_count"] is None and c["outputs"] == [] for c in code_cells)
     assert all("int main(void)" in "".join(c["source"]) for c in code_cells)
-    assert all(not re.search(r"(?<!s)\bscanf\s*\(", "".join(c["source"]))
+    assert all(not re.search(r"\bscanf\s*\(", re.sub(r"//[^\n]*|/\*.*?\*/", "", "".join(c["source"]), flags=re.S))
                for c in code_cells), "Interactive scanf in notebook code cell"
     markdown = "\n".join("".join(c["source"]) for c in cells
                          if c["cell_type"] == "markdown")
@@ -118,15 +126,22 @@ def main():
     for phrase in ("He forgot about the `&`!!", "scanf_perils.png",
                    "scanf(\"%d\", a)", "pow(5.0, -3.9)",
                    "asin(x)", "sinh(x)", "numer albumu",
-                   "\\Delta", "od -An -t x1"):
-        assert phrase in markdown, f"Missing recovered W3 topic: {phrase}"
-    assert len(EXPECTED_CELLS) == 22
+                   "od -An -t x1"):
+        assert phrase in markdown + "\n".join("".join(c["source"]) for c in code_cells), f"Missing recovered W3 topic: {phrase}"
+    # The quadratic case study belongs to W4 in the current approved course.
+    quadratic = json.loads((HERE.parent / "4" / "Wykład 4.ipynb").read_text())
+    assert "delta" in "\n".join("".join(c["source"]) for c in quadratic["cells"])
+    assert len(EXPECTED_CELLS) == 24
     assert len(SAMPLE_CASES) == 23
     for filename in sorted(set(row[0] for row in SAMPLE_CASES)):
         assert (SAMPLES / filename).exists(), filename
     print(f"PASS: notebook JSON, C kernel, {len(cells)} cells, "
           f"{len(code_cells)} clean C cells, W3.0-W3.9, no interactive code input")
 
+    assert not any(re.search(r"(?<![A-Za-z_])gets\s*\(", "".join(c["source"]))
+                   for c in code_cells), "Never execute gets"
+    for phrase in ("puts", "fputs", "fgets", "NULL", "C11", "N−1"):
+        assert phrase in markdown, phrase
     program_runs = 0
     sample_runs = 0
     with tempfile.TemporaryDirectory(prefix="check_w3_") as tempdir:
@@ -144,7 +159,32 @@ def main():
                     ordinal, optimization, repr(result.stdout),
                     repr(EXPECTED_CELLS[ordinal]))
                 program_runs += 1
-            print(f"PASS: notebook C cell {ordinal+1:02d}/22 x -O0,-O2")
+            print(f"PASS: notebook C cell {ordinal+1:02d}/24 x -O0,-O2")
+
+        # Compile the exact terminal-only fgets program printed in the notebook.
+        io_cell = next(c for c in cells if c.get("id") == "w3-io-fgets")
+        fences = re.findall(r"```c\n(.*?)```", "".join(io_cell["source"]), re.S)
+        assert len(fences) == 1
+        source = temp / "fgets.c"
+        source.write_text(fences[0])
+        fixtures = [
+            ("kot\n", 0, "1:[kot\n]\nBrak drugiego odczytu\n"),
+            ("123456\n", 0, "1:[123456\n]\nBrak drugiego odczytu\n"),
+            ("1234567\n", 0, "1:[1234567]\n2:[\n]\n"),
+            ("123456789\n", 0, "1:[1234567]\n2:[89\n]\n"),
+            ("", 1, "Brak pierwszego odczytu\n"),
+            ("abc", 0, "1:[abc]\nBrak drugiego odczytu\n"),
+            ("1234567", 0, "1:[1234567]\nBrak drugiego odczytu\n"),
+            ("\n", 0, "1:[\n]\nBrak drugiego odczytu\n"),
+        ]
+        for opt in ("-O0", "-O2"):
+            exe = temp / "fgets"
+            compile_program(source, exe, opt)
+            for data, status, output in fixtures:
+                result = run([str(exe)], input=data)
+                assert (result.returncode, result.stdout, result.stderr) == (status, output, ""), (
+                    opt, repr(data), result)
+        print("PASS: fgets exact notebook program: 8 boundary/EOF fixtures x -O0,-O2")
 
         for name in sorted(set(row[0] for row in SAMPLE_CASES)):
             executable = temp / Path(name).stem

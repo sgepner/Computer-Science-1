@@ -471,3 +471,11 @@ Coordinator separately reported rendering and contact-sheet visual inspection of
 
 
 Następny checkpoint: CP2 — W3.
+
+### CP2 — PASS
+
+Implementacja: W3 IO w komórkach w3-io-text, w3-io-newlines, w3-io-fgets; interaktywne fgets wyłącznie w oznaczonym programie terminalowym. Usunięto niekontrolowany scanf z komórki wykonywalnej i pustą końcową komórkę, poprawiono sukces dwóch konwersji na 2 oraz projektowe sformułowania. Zachowano żart, doświadczenia formatowania i całą matematykę.
+
+Weryfikacja: python3 3/check_w3.py — PASS: 24 programy × O0/O2 = 48 wykonań, 23 istniejące próby terminalowe × 2 = 46, osiem prób fgets × 2 = 16 (krótki tekst, pełne N−1 z newline, N znaków z newline pozostającym w wejściu, dłuższy, pusty, EOF bez newline, dokładnie N−1 bez newline i pusty wiersz). Porównanie bajtów zachowuje CR/backspace; wcześniejsze text=True zmieniało CR. Wszystkie poprawne przykłady C11 -Wall -Wextra -Werror -pedantic, matematyka -lm. nbformat.validate PASS. kernel_check.py 3 — 24/24 rzeczywiste wykonania Jupyter C, stdout zgodny z osobnym GCC, stderr pusty; log /tmp/w1-w5-audit/cp2-kernel.log.
+
+Checker zaktualizowany do rzeczywiście zastanej zawartości: zachowuje wszystkie istniejące wyrocznie poza przeniesionym wcześniej równaniem kwadratowym (obecność sprawdzana w W4), uwzględnia istniejące dodatkowe formatowanie/sterowanie terminalem i nowy IO. Kompilacja/wykonanie gets zabronione. Ryzyka: scanf nie jest pełnym parserem dowolnych danych; odczyt i walidacja całych wierszy pozostają poza lekcją. Następny CP3.
