@@ -37,8 +37,6 @@ EXPECTED = {
     "b19c4849-ad7f-41c8-b464-181c394837b7": "This is the first case\n",
     "w4-functions-value-scope": "lokalna=5\npo wywolaniu=4\n",
     "w4-int3-global-shadow": "funkcja: x=15\nmain: x=100\n",
-    # Removed when the terminal A/B versions replace this legacy parser in CP4.
-    "w4-quadratic-decision-tree": "dwa x1=2.0 x2=1.0\n",
 }
 
 def run(argv, data=""):
@@ -61,6 +59,91 @@ def build(text, temp, opt="-O0", warnings=False, expected_error=None):
 
 def fences(cell):
     return re.findall(r"```c\n(.*?)```", "".join(cell["source"]), re.S)
+
+
+def classify(result):
+    """Interpret numerical results independently of A/B string equality."""
+    assert result.stderr == "", result.stderr
+    output = result.stdout.strip()
+    prefixes = {
+        "Blad danych": ("invalid", 1),
+        "Nieskonczenie wiele rozwiazan": ("identity", 0),
+        "Brak rozwiazan": ("inconsistent", 0),
+        "Brak pierwiastkow rzeczywistych": ("none-real", 0),
+    }
+    if output in prefixes:
+        kind, status = prefixes[output]
+        assert result.returncode == status
+        return kind, []
+    for prefix, kind in (("Liniowe x=", "linear"), ("Jeden x=", "single"), ("Dwa x1=", "two")):
+        if output.startswith(prefix):
+            values = [float(x) for x in re.findall(r"=(\S+)", output)]
+            assert len(values) == (2 if kind == "two" else 1), output
+            assert result.returncode == 0 and all(math.isfinite(x) for x in values)
+            return kind, sorted(values)
+    raise AssertionError(output)
+
+def check_quadratic(cells, temp):
+    programs = [fences(cells[id])[0] for id in ("w4-quadratic-a", "w4-quadratic-b")]
+    assert all(not re.search(r"\bsscanf\b|const\s+char\s*\*", p) for p in programs)
+    # Main-only A; B has prototypes and by-value parameters, no global coefficients.
+    assert len(re.findall(r"\b(?:int|double|void)\s+\w+\s*\([^;]*?\)\s*\{", programs[0])) == 1
+    assert "double oblicz_delte(double a, double b, double c);" in programs[1]
+    cases = [
+        ("1 -3 2\n", "two", [1,2], (1,-3,2)),
+        ("1 2 1\n", "single", [-1], (1,2,1)),
+        ("1 0 1\n", "none-real", [], (1,0,1)),
+        ("0 2 -4\n", "linear", [2], (0,2,-4)),
+        ("0 0 1\n", "inconsistent", [], (0,0,1)),
+        ("0 0 0\n", "identity", [], (0,0,0)),
+        ("kot\n", "invalid", [], None),
+        ("", "invalid", [], None),
+        ("1 2\n", "invalid", [], None),
+        ("1 kot 2\n", "invalid", [], None),
+        ("nan 2 1\n", "invalid", [], None),
+        ("1 inf 1\n", "invalid", [], None),
+        ("-1 3 -2\n", "two", [1,2], (-1,3,-2)),
+        ("1 0 -2\n", "two", [-math.sqrt(2),math.sqrt(2)], (1,0,-2)),
+        ("0 -2 -4\n", "linear", [-2], (0,-2,-4)),
+        ("2 0 0\n", "single", [0], (2,0,0)),
+    ]
+    count = 0
+    for opt in ("-O0","-O2"):
+        observed=[]
+        for text in programs:
+            exe=build(text,temp,opt); runs=[]
+            for data,kind,roots,coeffs in cases:
+                result=run([str(exe)],data)
+                actual,values=classify(result)
+                assert actual==kind,(opt,data,actual,kind)
+                assert len(values)==len(roots)
+                for x,y in zip(values,roots):
+                    assert math.isclose(x,y,rel_tol=1e-8,abs_tol=1e-9),(data,x,y)
+                    a,b,c=coeffs
+                    residual=abs((a*x+b)*x+c)
+                    scale=max(1,abs(a*x*x)+abs(b*x)+abs(c))
+                    assert residual/scale < 1e-8,(data,x,residual/scale)
+                runs.append((result.returncode,actual,values))
+                count+=1
+            observed.append(runs)
+        assert observed[0]==observed[1],("A/B semantic mismatch",opt)
+    # Test pure numerical stages in B independently of the whole-program output.
+    unit=programs[1].replace("int main(void)","int solver_main(void)",1)+r"""
+int main(void)
+{
+    if (oblicz_delte(1,-3,2) != 1) return 1;
+    if (oblicz_delte(1,2,1) != 0) return 2;
+    if (oblicz_delte(1,0,1) != -4) return 3;
+    if (liczba_pierwiastkow(-4) != 0) return 4;
+    if (liczba_pierwiastkow(0) != 1) return 5;
+    if (liczba_pierwiastkow(1) != 2) return 6;
+    return 0;
+}
+"""
+    for opt in ("-O0","-O2"):
+        assert run([str(build(unit,temp,opt))]).returncode==0
+    print(f"PASS W4 PROC: {count} exact A/B terminal-program runs, 16 fixtures x 2 versions x O0/O2; status/classes/numeric roots/residuals/parity; 12 pure-stage checks")
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -113,7 +196,7 @@ def main():
             assert run([str(build(text,temp))]).stdout==f"mianownik={den}, wynik={value}\n"
         print(f"PASS W4 IF: {count} golden/controlled runs + 7 logical boundary runs; scope EXPECTED-FAIL; warnings explicit")
         if not args.if_only:
-            raise AssertionError("CP4 A/B verification not implemented yet")
+            check_quadratic(cells, temp)
     print("PASS W4 structure, no saved outputs, C11 -Wall -Wextra -pedantic, O0/O2")
 
 if __name__ == "__main__":
