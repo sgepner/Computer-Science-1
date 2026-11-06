@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
+import xml.etree.ElementTree as ET
 import nbformat
 
 HERE = Path(__file__).resolve().parent
@@ -153,6 +154,18 @@ def main():
     nbformat.validate(nbformat.from_dict(raw))
     assert raw["metadata"]["kernelspec"]["name"] == "c"
     cells = {c["id"]: c for c in raw["cells"]}
+    graphic = ET.parse(HERE / "w4_g4_quadratic.svg").getroot()
+    labels = " ".join(graphic.itertext())
+    assert "sscanf" not in labels and "Dane poprawne?" in labels and "scanf" in labels
+    edges = {(e.attrib["data-from"],e.attrib["data-to"],e.attrib.get("data-cond",""))
+             for e in graphic.iter() if "data-from" in e.attrib}
+    assert edges == {
+        ("input","error","nie"),("input","a0","tak"),
+        ("a0","b0","tak"),("a0","delta","nie"),("b0","c0","tak"),
+        ("b0","linear","nie"),("c0","identity","tak"),("c0","contradiction","nie"),
+        ("delta","dneg",""),("dneg","no_real","tak"),("dneg","dzero","nie"),
+        ("dzero","one","tak"),("dzero","two","nie")}, edges
+    print("PASS quadratic SVG labels and all 13 decision edges")
     count = 0
     with tempfile.TemporaryDirectory(prefix="w4_check_") as td:
         temp = Path(td)

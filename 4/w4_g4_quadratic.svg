@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="750" viewBox="0 0 1400 750">
 <title>Pełne drzewo decyzji równania kwadratowego</title>
+<desc>Poprawne dane oznaczają odczyt trzech skończonych współczynników przez scanf. Błąd odczytu, NaN lub nieskończoność kończą program błędem danych.</desc>
 <rect width="1400" height="750" fill="white"/>
 <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#344960"/></marker></defs>
 <g font-family="DejaVu Sans, sans-serif"><path d="M 560 113 L 404 113" data-from="input" data-to="error" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
@@ -8,14 +9,14 @@
 <path d="M 835 243 L 1080 243 L 1080 331" data-from="a0" data-to="delta" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
 <path d="M 220 377 L 220 474" data-from="b0" data-to="c0" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
 <path d="M 470 377 L 533 377 L 533 482" data-from="b0" data-to="linear" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
-<path d="M 159 559 L 129 559 L 129 626" data-from="c0" data-to="identity" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
-<path d="M 281 559 L 410 559 L 410 626" data-from="c0" data-to="contradiction" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 95 520 L 65 520 L 65 600 L 129 600 L 129 626" data-from="c0" data-to="identity" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 345 520 L 375 520 L 375 590 L 410 590 L 410 626" data-from="c0" data-to="contradiction" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
 <path d="M 1080 398 L 1080 429" data-from="delta" data-to="dneg" data-cond="" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
 <path d="M 945 475 L 856 475 L 856 584" data-from="dneg" data-to="no_real" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
 <path d="M 1215 475 L 1220 475 L 1220 563" data-from="dneg" data-to="dzero" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
-<path d="M 1152 648 L 1152 674" data-from="dzero" data-to="one" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
-<path d="M 1287 648 L 1295 648 L 1295 674" data-from="dzero" data-to="two" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
-<g id="input"><polygon points="697.5,72 835,113 697.5,154 560,113" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="697.5" y="120.1" text-anchor="middle" font-size="21" fill="#152238">sscanf(...) == 3?</text></g>
+<path d="M 1152 628 L 1152 674" data-from="dzero" data-to="one" data-cond="tak" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1287 628 L 1295 628 L 1295 674" data-from="dzero" data-to="two" data-cond="nie" fill="none" stroke="#344960" stroke-width="2.3" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<g id="input"><polygon points="697.5,72 835,113 697.5,154 560,113" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="697.5" y="120.1" text-anchor="middle" font-size="21" fill="#152238">Dane poprawne?</text></g>
 <g id="error"><rect x="175" y="89" width="222" height="57" rx="11" fill="#fff1f0" stroke="#27364b" stroke-width="2"/><text x="286" y="124.6" text-anchor="middle" font-size="21" fill="#152238">błąd danych</text></g>
 <g id="a0"><polygon points="697.5,202 835,243 697.5,284 560,243" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="697.5" y="250.5" text-anchor="middle" font-size="22" fill="#152238">a == 0?</text></g>
 <g id="b0"><polygon points="345,338 470,377 345,416 220,377" fill="#fffaf0" stroke="#27364b" stroke-width="2"/><text x="345" y="384.1" text-anchor="middle" font-size="21" fill="#152238">b == 0?</text></g>

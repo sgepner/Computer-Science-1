@@ -513,3 +513,19 @@ python3 check_w1_w5.py — PASS: 5× nbformat.validate, kernelspec c, 17 lokalny
 Dodatkowe badanie środowiska: pełny przebieg niezmodyfikowanego kernela zgubił stdout W3 c7, mimo wcześniejszego pozytywnego wykonania tego samego kodu. Recenzent potwierdził race w zainstalowanym jupyter_c_kernel: końcowy drain kolejki bez dołączenia wątków odczytu. Nie jest to błąd notebooka ani dowód poprawności kernela stock. Jawna opcja checkera --join-output-threads uruchamia ten sam CKernel przez tymczasowy driver (bez zmiany pakietu użytkownika), dołącza oba wątki po wyjściu procesu, z timeout i błędem przy niezakończeniu; kompilacja, wykonanie i ścisłe asercje stdout/stderr pozostają niezmienione. Pierwszy przebieg z poprawionym transportem: 111/111 PASS (11/35/24/21/20); ostateczny retest z kontrolą timeout w CP8. Stock-kernel reliability: UNVERIFIED/znana wada transportu, jawne otwarte ryzyko środowiskowe. Ostrzeżenie destruktora pętli asyncio po pozytywnych testach, exit 0, jest diagnostyką środowiska, nie wynikiem C.
 
 Następny CP7. Wstępny niezależny przegląd jest FAIL do naprawy dwóch etykiet: stary sscanf w SVG W4 oraz niepotwierdzona tolerancja 1e-12 dla wydruku Fouriera. Nie przechodzimy do odbioru przed naprawą.
+
+### CP7 — PASS po naprawie i ponownym niezależnym przeglądzie
+
+Reviewer audit_w3_w5, rzeczywisty independent_reviewer (konfiguracja roli gpt-6.1-sol/medium), niezależny od implementera, ponownie przeczytał źródła, macierz, checkery i dowody; nie wykonywał powtórnie kosztownych testów. Pierwotny FAIL: diagram W4 zawierał sscanf, a W5 deklarował 1e-12 bez testu pełnej precyzji. Naprawiono wejściową etykietę i opis dostępności SVG oraz połączenia czterech strzałek (bez zmiany dróg decyzji). Dodano kontrolę 13 krawędzi SVG. W5: oryginalna funkcja szereg testowana przed formatowaniem, 21 punktów × O0/O2; nieparzystość, zera skoków i analityczne N=1/2 z 1e-12. Opis rozdziela te wartości od wydruku 6 miejsc. Pełne regresje W4/W5 PASS, logi cp7-w4.log/cp7-w5.log.
+
+Reviewer obejrzał wyrenderowany diagram i zweryfikował poprawkę transportu kernela; nie zgłosił dalszego blokera implementacji. Dokładne źródła przeglądu: HEAD d7a1333078b3725a8b9fc13fbbda315445fe9992 + pliki o SHA256:
+- 4/w4_g4_quadratic.svg: 65b3e1b4d18cb719b72c43cdd7b3c8b60dc11b4eee5b9994265fedf27618162b
+- 4/check_w4.py: 8813e8b9e12796f4757feb5eedbc6147f0cd07163e8fa5d2b7c15e172d30d8ec
+- 5/check_w5.py: b120702edbca135917aea64c2d439ee5813471446abc5b7e1417519061dca88c
+- 5/Wykład 5.ipynb: b610fef161727f16d92b4d71491aaad470775d67bc02b87dcbf9c0afc6916fdd
+
+Pełny raport roboczy: /tmp/w1-w5-audit/cp7-independent.md. Koordynator zdekodował/wyrenderował wszystkie 17 odwołań do grafik i obejrzał zestawienie; GIF Fourier ma 53 poprawnie dekodowane klatki (500×250). Struktura ścieżek offline PASS. Oględziny nie są pełnym testem interaktywnego renderowania notebooka w każdej wersji Jupyter; ta granica pozostaje jawna.
+
+Wszystkie merytoryczne MISSING z CP1 zamknięte: W3 IO→w3-io-*; W4 pojedyncza instrukcja/średnik→w4-if-*; zasięg/czas życia→w4-scope-*; zwracane wartości/prototypy/dekompozycja→w4-quadratic-b; oba równania→w4-quadratic-a/b/parity; W5 parzyste/nieparzyste→W5.4 dwa nowe programy, float→W5.4 ostatni eksperyment, gra→W5.7 terminalowy while/scanf/break. W1/W2 przeniesienia sprecyzowano przed macierzami; W4 funkcje/linkowanie→końcowa sekcja w4-quadratic-parity. Brak nierozpoznanych zależności W3→W4→W5: puts/fputs poznane w W3, if zapowiedziany przed IO, pętle w W5, tablica znaków i wskaźnikowe zapisy jawnie ograniczone/zapowiedziane. Nie zmieniano naukowych kontraktów ani master.
+
+Następny i ostatni checkpoint: CP8 — testy na końcowej zapisanej rewizji i odbiór selektywnych plików. Znana wada stock-kernela nie jest ukryta przez PASS przeglądu.

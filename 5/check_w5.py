@@ -109,6 +109,30 @@ def main():
     for m in (9,17):
      text="".join(codes[19]["source"]).replace("m = 9, N = 5",f"m = {m}, N = {N}")
      check_fourier(run([str(build(text,temp,opt))]).stdout,N,m)
+   # Preserve the stated 1e-12 invariant using raw function results, not a
+   # six-decimal display. The original szereg implementation is unmodified.
+   unit="".join(codes[19]["source"]).replace("int main(void)","int notebook_main(void)",1)+r"""
+int main(void)
+{
+    int ns[] = {1, 2, 5};
+    double xs[] = {-1, -0.5, -0.125, 0, 0.125, 0.5, 1};
+    for (int i=0; i<3; ++i)
+        for (int j=0; j<7; ++j)
+            printf("%d %.17g %.17g\n", ns[i], xs[j], szereg(xs[j],1.0,ns[i]));
+    return 0;
+}
+"""
+   result=run([str(build(unit,temp,opt))])
+   assert result.returncode==0 and result.stderr==""
+   rawrows=[line.split() for line in result.stdout.splitlines()]
+   assert len(rawrows)==21
+   values={(int(n),float(x)):float(y) for n,x,y in rawrows}
+   for (N,x),y in values.items():
+    assert abs(y+values[N,-x])<1e-12,(opt,N,x,"oddness")
+    if x in (-1,0,1):assert abs(y)<1e-12,(opt,N,x,"jump")
+    if N==1 and x==0.5:assert abs(y-4/math.pi)<1e-12
+    if N==2 and x==0.5:assert abs(y-(4/math.pi)*(1-1/3))<1e-12
+   print(f"  Fourier raw {opt}: 21 values, oddness/jump zeros/analytic N=1,2 at 1e-12")
    # Exact terminal game is compiled from Markdown, never from another wrapper.
    gamecell=next(c for c in raw["cells"] if "while (tura < 5)" in "".join(c["source"]))
    game=re.findall(r"```c\n(.*?)```","".join(gamecell["source"]),re.S)
@@ -135,7 +159,7 @@ def main():
    source=temp/"bad.c";source.write_text(text)
    bad=run(["gcc","-std=c11","-Wall","-Wextra","-pedantic-errors","-fsyntax-only",str(source)])
    assert bad.returncode!=0 and "undeclared" in bad.stderr,bad.stderr
- print(f"PASS W5: {count} golden/game runs; 12 Fourier N/m variants; 2 do-while boundary runs; 11-point float oracle at both optimizations; scope EXPECTED-FAIL")
+ print(f"PASS W5: {count} golden/game runs; 12 Fourier N/m variants + 42 raw Fourier values at 1e-12; 2 do-while boundary runs; 11-point float oracle at both optimizations; scope EXPECTED-FAIL")
  print("PASS structure, C11 -Wall -Wextra -Werror -pedantic, no interactive code cells")
 
 if __name__=="__main__":main()
