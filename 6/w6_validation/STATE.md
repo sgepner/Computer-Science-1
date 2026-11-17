@@ -1,10 +1,12 @@
 # W6 — stan realizacji (wyłącznie gałąź robocza)
 
 Kontrakt: [W6_MODERNIZATION_PLAN.md](../W6_MODERNIZATION_PLAN.md).
-Tryb: execution-control continuous; bramki test-review-advance.
+Tryb: execution-control continuous; bramki test-review-advance. **COMPLETE**: W6-INT.1–9 VERIFIED PASS.
 Zakres: W6-INT.1–W6-INT.9, bez publikacji, push i merge.
 Gałąź: `codex/w6-modernizacja`; baza po fetch: `95f4bc5c241d9032f0f686abc12ec732bb55a6bc`.
-Bieżący HEAD: `git rev-parse HEAD`; aktualne zmiany: `git status --short`.
+Ostatnia faktycznie przetestowana rewizja: `acb6a972b824b3601bd7e4c5c32cc3ca473bdbba`.
+Bieżący HEAD: `git rev-parse HEAD`; commit zamykający zmienia wyłącznie raport i dowody.
+Aktualne zmiany: `git status --short`; brak otwartego checkpointu lub blokady.
 Źródła historyczne pozostają bez zmian. Zastane pliki nieśledzone nie należą do kampanii.
 
 | Etap | Stan | Dowód / następna czynność |
@@ -17,7 +19,7 @@ Bieżący HEAD: `git rev-parse HEAD`; aktualne zmiany: `git status --short`.
 | W6-INT.6 | VERIFIED PASS | 10 programów łącznie × 3 tryby i kernel C; 30 kontroli wyników; parametry wyjściowe, kopia wskaźnika i swap zgodne; niezależna recenzja W6.7–9 PASS; report-through-9.json |
 | W6-INT.7 | VERIFIED PASS | 13 programów × O0/O2/ASan+UBSan i kernel C; 39 asercji semantycznych; diagram memcpy sprawdzony; report-through-13.json |
 | W6-INT.8 | VERIFIED PASS | Niezależny reviewer: PASS bez usterek; 39 uruchomień GCC + 13 komórek kernela, regresje, render 13 sekcji/5 grafik; review.json |
-| W6-INT.9 | W TOKU | Lista publikacyjna i odbiór |
+| W6-INT.9 | VERIFIED PASS | Lista publikacyjna: wyłącznie notebook; źródła zachowane, lokalny commit i instrukcja odbioru; bez push/merge |
 
 ## Weryfikacja
 
@@ -132,3 +134,49 @@ Historyczne źródła, inne wykłady, README i plan pozostają bez zmian.
 Nie wykonano push, merge ani przeniesienia materiałów na master.
 Kolejne działanie po zamknięciu kampanii: odbiór prowadzącego (~5–10 min) i ewentualne
 osobne polecenie selektywnej publikacji samego notebooka, bez merge gałęzi.
+
+## Zamknięcie kampanii — W6-INT.9
+
+Tryb continuous: wszystkie dziewięć etapów VERIFIED PASS. Pozostałych autoryzowanych
+checkpointów brak. Dalsza publikacja wymaga osobnego polecenia właściciela.
+Commit implementacji: `acb6a972b824b3601bd7e4c5c32cc3ca473bdbba`, rodzic
+`95f4bc5c241d9032f0f686abc12ec732bb55a6bc`; komunikat
+`feat(W6): modernize pointers lecture as self-contained Polish notebook`.
+Pełną bramkę powtórzono na dokładnie tym commicie: 13 programów × 3 tryby GCC,
+13 wykonanych komórek kernela C, wszystkie semantyczne asercje PASS.
+Końcowy digest notebooka: `9ddaa853670d8be7a96b5be920259cb923268d47f05a7cf0bda4435cca2064c9`.
+Niezależny reviewer sprawdził odświeżone raporty; wcześniejsza uwaga o digestcie
+regresji została zamknięta. Recenzja pozostaje PASS, bez powtarzania testów przez recenzenta.
+
+Kontrola zakresu (`results/scope.json`): 297 istniejących plików śledzonych ma identyczne
+SHA-256 jak przed modernizacją; lista 279 zastanych nieśledzonych plików poza kampanią
+jest bez zmian. Nie deklarujemy czystego całego katalogu roboczego z tymi plikami użytkownika.
+Lokalny master pozostaje na `95f4bc5c241d9032f0f686abc12ec732bb55a6bc`.
+Notebook ma 61 komórek: 48 Markdown i 13 C; 5 PNG osadzonych jako attachments.
+Nie wymaga zewnętrznych plików ani interaktywnego wejścia.
+
+Zakres testów ograniczono do W6 i jego zasobów: innych wykładów nie zmieniono,
+więc nie wykonywano ich regresji. Kontrola właściciela jest odbiorem dydaktycznym,
+a nie brakującą obowiązkową bramką techniczną. Sanitizery nie dowodzą uniwersalnej
+poprawności i nie uruchamiano fragmentów oznaczonych jako niebezpieczne.
+
+### Dokładny wykaz nowych plików gałęzi
+
+- `6/Wykład 6.ipynb`
+- `6/w6_validation/.gitignore`
+- `6/w6_validation/STATE.md`
+- `6/w6_validation/baseline.json`
+- `6/w6_validation/regression.py`
+- `6/w6_validation/render.cjs`
+- `6/w6_validation/render.py`
+- `6/w6_validation/results/kernel.log`
+- `6/w6_validation/results/regression.json`
+- `6/w6_validation/results/render.json`
+- `6/w6_validation/results/report-through-13.json`
+- `6/w6_validation/results/report-through-3.json`
+- `6/w6_validation/results/report-through-6.json`
+- `6/w6_validation/results/report-through-7.json`
+- `6/w6_validation/results/report-through-9.json`
+- `6/w6_validation/results/review.json`
+- `6/w6_validation/results/scope.json`
+- `6/w6_validation/verify.py`

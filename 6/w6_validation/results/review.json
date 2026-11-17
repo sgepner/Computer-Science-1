@@ -18,5 +18,7 @@
   ],
   "tests_repeated_by_reviewer": false,
   "blocking_findings": [],
-  "evidence_refresh": "regression.json now matches final digest and negative memcpy exercise passed in O0/O2/san"
+  "evidence_refresh": "regression.json now matches final digest and negative memcpy exercise passed in O0/O2/san",
+  "evidence_refresh_confirmed_by_reviewer": true,
+  "tested_source_revision": "acb6a972b824b3601bd7e4c5c32cc3ca473bdbba"
 }
