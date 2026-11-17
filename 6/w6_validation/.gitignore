@@ -1,0 +1,6 @@
+# Reproducible local previews and raw execution artifacts; report JSON retains evidence.
+__pycache__/
+results/*.png
+results/*.html
+results/*.ipynb
+results/cell_*.txt

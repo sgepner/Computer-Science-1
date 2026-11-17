@@ -1,0 +1,103 @@
+{
+  "width": 1200,
+  "scrollWidth": 1200,
+  "images": [
+    {
+      "loaded": true,
+      "alt": "Schemat dla naszej platformy: adresy i rozmiary trzech niezależnych obiektów. Adresy są umowne.",
+      "width": 1139,
+      "height": 406
+    },
+    {
+      "loaded": true,
+      "alt": "Schemat dla int a = 100; int *p = &a;. Adres wskaźnika &p różni się od przechowywanego w nim adresu p.",
+      "width": 1139,
+      "height": 357
+    },
+    {
+      "loaded": true,
+      "alt": "Schemat kolejnych stanów programu. Zielony oznacza wskaźnik, niebieski liczbę, pomarańczowy obiekt właśnie zmieniony. q cały czas wskazuje a; adresy są umowne.",
+      "width": 1139,
+      "height": 920
+    },
+    {
+      "loaded": true,
+      "alt": "Stan początkowy: int a = 100; int *p = &a; int **pp = &p;. Wszystkie trzy prostokąty oznaczają osobne obiekty. Adresy są umowne.",
+      "width": 1139,
+      "height": 378
+    },
+    {
+      "loaded": true,
+      "alt": "Reprezentacja dwóch int mieści się w 8 B na naszej platformie. Podziałki oznaczają bajty; nie pokazujemy ich wartości ani kolejności wewnątrz int.",
+      "width": 1139,
+      "height": 659
+    }
+  ],
+  "sections": [
+    {
+      "title": "W6.1 — Gdzie mieszkają zmienne?¶",
+      "y": 389.0625,
+      "bottom": 1559.6875
+    },
+    {
+      "title": "W6.2 — Jak poznać adres?¶",
+      "y": 1559.6875,
+      "bottom": 2287.3125
+    },
+    {
+      "title": "W6.3 — Czym jest wskaźnik?¶",
+      "y": 2287.3125,
+      "bottom": 3497.1875
+    },
+    {
+      "title": "W6.4 — Co kryje się pod adresem?¶",
+      "y": 3497.1875,
+      "bottom": 4206.390625
+    },
+    {
+      "title": "W6.5 — Czy wskaźnik może zmienić wartość?¶",
+      "y": 4206.390625,
+      "bottom": 6197.875
+    },
+    {
+      "title": "W6.6 — Czy wskaźnik też ma adres?¶",
+      "y": 6197.875,
+      "bottom": 7515.53125
+    },
+    {
+      "title": "W6.7 — Kiedy wskaźnik jest niebezpieczny?¶",
+      "y": 7515.53125,
+      "bottom": 9063.859375
+    },
+    {
+      "title": "W6.8 — Co przekazujemy funkcji?¶",
+      "y": 9063.859375,
+      "bottom": 10400.40625
+    },
+    {
+      "title": "W6.9 — Jak uzyskać więcej niż jeden wynik?¶",
+      "y": 10400.40625,
+      "bottom": 12095.1875
+    },
+    {
+      "title": "W6.10 — Co oznacza p + 1?¶",
+      "y": 12095.1875,
+      "bottom": 13057.671875
+    },
+    {
+      "title": "W6.11 — Po co void *?¶",
+      "y": 13057.671875,
+      "bottom": 13847.625
+    },
+    {
+      "title": "W6.12 — Czy w double zmieszczą się dwa int?¶",
+      "y": 13847.625,
+      "bottom": 16025.984375
+    },
+    {
+      "title": "W6.13 — Sprawdź, co rozumiesz¶",
+      "y": 16025.984375,
+      "bottom": 16721
+    }
+  ]
+}

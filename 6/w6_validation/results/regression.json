@@ -1,0 +1,189 @@
+{
+  "notebook_sha256": "9ddaa853670d8be7a96b5be920259cb923268d47f05a7cf0bda4435cca2064c9",
+  "result": "PASS",
+  "tests": [
+    {
+      "name": "swap",
+      "mode": "O0",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O0",
+        "/tmp/w6-regression-_q6a6c2h/swap.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/swap-O0"
+      ],
+      "source": "#include <stdio.h>\n\nvoid swap(int *pa, int *pb)\n{\n    int tmp = *pa;\n    *pa = *pb;\n    *pb = tmp;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int a=3, b=8; swap(&a,&b); assert(a==8 && b==3); swap(&a,&b); assert(a==3 && b==8); }\n{ int a=8, b=3; swap(&a,&b); assert(a==3 && b==8); swap(&a,&b); assert(a==8 && b==3); }\n{ int a=5, b=5; swap(&a,&b); assert(a==5 && b==5); swap(&a,&b); assert(a==5 && b==5); }\n{ int a=-2, b=-7; swap(&a,&b); assert(a==-7 && b==-2); swap(&a,&b); assert(a==-2 && b==-7); }\n{ int a=0, b=0; swap(&a,&b); assert(a==0 && b==0); swap(&a,&b); assert(a==0 && b==0); }\n{ int a=-2147483648, b=2147483647; swap(&a,&b); assert(a==2147483647 && b==-2147483648); swap(&a,&b); assert(a==-2147483648 && b==2147483647); }\n{ int a=-7; swap(&a,&a); assert(a==-7); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "swap",
+      "mode": "O2",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O2",
+        "/tmp/w6-regression-_q6a6c2h/swap.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/swap-O2"
+      ],
+      "source": "#include <stdio.h>\n\nvoid swap(int *pa, int *pb)\n{\n    int tmp = *pa;\n    *pa = *pb;\n    *pb = tmp;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int a=3, b=8; swap(&a,&b); assert(a==8 && b==3); swap(&a,&b); assert(a==3 && b==8); }\n{ int a=8, b=3; swap(&a,&b); assert(a==3 && b==8); swap(&a,&b); assert(a==8 && b==3); }\n{ int a=5, b=5; swap(&a,&b); assert(a==5 && b==5); swap(&a,&b); assert(a==5 && b==5); }\n{ int a=-2, b=-7; swap(&a,&b); assert(a==-7 && b==-2); swap(&a,&b); assert(a==-2 && b==-7); }\n{ int a=0, b=0; swap(&a,&b); assert(a==0 && b==0); swap(&a,&b); assert(a==0 && b==0); }\n{ int a=-2147483648, b=2147483647; swap(&a,&b); assert(a==2147483647 && b==-2147483648); swap(&a,&b); assert(a==-2147483648 && b==2147483647); }\n{ int a=-7; swap(&a,&a); assert(a==-7); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "swap",
+      "mode": "san",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-pie",
+        "-no-pie",
+        "/tmp/w6-regression-_q6a6c2h/swap.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/swap-san"
+      ],
+      "source": "#include <stdio.h>\n\nvoid swap(int *pa, int *pb)\n{\n    int tmp = *pa;\n    *pa = *pb;\n    *pb = tmp;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int a=3, b=8; swap(&a,&b); assert(a==8 && b==3); swap(&a,&b); assert(a==3 && b==8); }\n{ int a=8, b=3; swap(&a,&b); assert(a==3 && b==8); swap(&a,&b); assert(a==8 && b==3); }\n{ int a=5, b=5; swap(&a,&b); assert(a==5 && b==5); swap(&a,&b); assert(a==5 && b==5); }\n{ int a=-2, b=-7; swap(&a,&b); assert(a==-7 && b==-2); swap(&a,&b); assert(a==-2 && b==-7); }\n{ int a=0, b=0; swap(&a,&b); assert(a==0 && b==0); swap(&a,&b); assert(a==0 && b==0); }\n{ int a=-2147483648, b=2147483647; swap(&a,&b); assert(a==2147483647 && b==-2147483648); swap(&a,&b); assert(a==-2147483648 && b==2147483647); }\n{ int a=-7; swap(&a,&a); assert(a==-7); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "suma_roznica",
+      "mode": "O0",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O0",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica-O0"
+      ],
+      "source": "#include <stdio.h>\n\nvoid suma_roznica(int x, int y, int *ps, int *pr)\n{\n    *ps = x + y;\n    *pr = x - y;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int s=99, r=99; suma_roznica(8,3,&s,&r); assert(s==11 && r==5); }\n{ int s=99, r=99; suma_roznica(3,8,&s,&r); assert(s==11 && r==-5); }\n{ int s=99, r=99; suma_roznica(0,0,&s,&r); assert(s==0 && r==0); }\n{ int s=99, r=99; suma_roznica(-3,-8,&s,&r); assert(s==-11 && r==5); }\n{ int s=99, r=99; suma_roznica(-8,-3,&s,&r); assert(s==-11 && r==-5); }\n{ int s=99, r=99; suma_roznica(-10,7,&s,&r); assert(s==-3 && r==-17); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "suma_roznica",
+      "mode": "O2",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O2",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica-O2"
+      ],
+      "source": "#include <stdio.h>\n\nvoid suma_roznica(int x, int y, int *ps, int *pr)\n{\n    *ps = x + y;\n    *pr = x - y;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int s=99, r=99; suma_roznica(8,3,&s,&r); assert(s==11 && r==5); }\n{ int s=99, r=99; suma_roznica(3,8,&s,&r); assert(s==11 && r==-5); }\n{ int s=99, r=99; suma_roznica(0,0,&s,&r); assert(s==0 && r==0); }\n{ int s=99, r=99; suma_roznica(-3,-8,&s,&r); assert(s==-11 && r==5); }\n{ int s=99, r=99; suma_roznica(-8,-3,&s,&r); assert(s==-11 && r==-5); }\n{ int s=99, r=99; suma_roznica(-10,7,&s,&r); assert(s==-3 && r==-17); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "suma_roznica",
+      "mode": "san",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-pie",
+        "-no-pie",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/suma_roznica-san"
+      ],
+      "source": "#include <stdio.h>\n\nvoid suma_roznica(int x, int y, int *ps, int *pr)\n{\n    *ps = x + y;\n    *pr = x - y;\n}\n\n\n#include <assert.h>\nint main(void) {\n{ int s=99, r=99; suma_roznica(8,3,&s,&r); assert(s==11 && r==5); }\n{ int s=99, r=99; suma_roznica(3,8,&s,&r); assert(s==11 && r==-5); }\n{ int s=99, r=99; suma_roznica(0,0,&s,&r); assert(s==0 && r==0); }\n{ int s=99, r=99; suma_roznica(-3,-8,&s,&r); assert(s==-11 && r==5); }\n{ int s=99, r=99; suma_roznica(-8,-3,&s,&r); assert(s==-11 && r==-5); }\n{ int s=99, r=99; suma_roznica(-10,7,&s,&r); assert(s==-3 && r==-17); }\nreturn 0;\n}\n",
+      "exit": 0,
+      "stdout": ""
+    },
+    {
+      "name": "memcpy-negative-roundtrip",
+      "mode": "O0",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O0",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip-O0"
+      ],
+      "source": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    int x = -3;\n    int y = 42;\n    double d = 9.0;\n    unsigned char bufor[sizeof x + sizeof y];\n    int odzyskane_x = 0;\n    int odzyskane_y = 0;\n\n    printf(\"int: %zu B, double: %zu B, dwie reprezentacje int: %zu B\\n\",\n           sizeof x, sizeof d, sizeof x + sizeof y);\n    if (sizeof(int) != 4 || sizeof(double) != 8 ||\n        sizeof d != sizeof x + sizeof y) {\n        puts(\"Ten pokaz wymaga int 4 B i double 8 B.\");\n        return 0;\n    }\n\n    printf(\"Przed kopiowaniem: x=%d y=%d d=%.1f\\n\", x, y, d);\n    memcpy(bufor, &x, sizeof x);\n    memcpy(bufor + sizeof x, &y, sizeof y);\n    memcpy(&d, bufor, sizeof d);\n    puts(\"Skopiowano 8 B do d; nie odczytujemy wartosci double.\");\n\n    memcpy(bufor, &d, sizeof d);\n    memcpy(&odzyskane_x, bufor, sizeof odzyskane_x);\n    memcpy(&odzyskane_y, bufor + sizeof x, sizeof odzyskane_y);\n    printf(\"Odzyskane: x=%d y=%d\\n\", odzyskane_x, odzyskane_y);\n    printf(\"Zgodnosc: %d\\n\", odzyskane_x == x && odzyskane_y == y);\n    return (odzyskane_x == x && odzyskane_y == y) ? 0 : 1;\n}",
+      "exit": 0,
+      "stdout": "int: 4 B, double: 8 B, dwie reprezentacje int: 8 B\nPrzed kopiowaniem: x=-3 y=42 d=9.0\nSkopiowano 8 B do d; nie odczytujemy wartosci double.\nOdzyskane: x=-3 y=42\nZgodnosc: 1\n"
+    },
+    {
+      "name": "memcpy-negative-roundtrip",
+      "mode": "O2",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O2",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip-O2"
+      ],
+      "source": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    int x = -3;\n    int y = 42;\n    double d = 9.0;\n    unsigned char bufor[sizeof x + sizeof y];\n    int odzyskane_x = 0;\n    int odzyskane_y = 0;\n\n    printf(\"int: %zu B, double: %zu B, dwie reprezentacje int: %zu B\\n\",\n           sizeof x, sizeof d, sizeof x + sizeof y);\n    if (sizeof(int) != 4 || sizeof(double) != 8 ||\n        sizeof d != sizeof x + sizeof y) {\n        puts(\"Ten pokaz wymaga int 4 B i double 8 B.\");\n        return 0;\n    }\n\n    printf(\"Przed kopiowaniem: x=%d y=%d d=%.1f\\n\", x, y, d);\n    memcpy(bufor, &x, sizeof x);\n    memcpy(bufor + sizeof x, &y, sizeof y);\n    memcpy(&d, bufor, sizeof d);\n    puts(\"Skopiowano 8 B do d; nie odczytujemy wartosci double.\");\n\n    memcpy(bufor, &d, sizeof d);\n    memcpy(&odzyskane_x, bufor, sizeof odzyskane_x);\n    memcpy(&odzyskane_y, bufor + sizeof x, sizeof odzyskane_y);\n    printf(\"Odzyskane: x=%d y=%d\\n\", odzyskane_x, odzyskane_y);\n    printf(\"Zgodnosc: %d\\n\", odzyskane_x == x && odzyskane_y == y);\n    return (odzyskane_x == x && odzyskane_y == y) ? 0 : 1;\n}",
+      "exit": 0,
+      "stdout": "int: 4 B, double: 8 B, dwie reprezentacje int: 8 B\nPrzed kopiowaniem: x=-3 y=42 d=9.0\nSkopiowano 8 B do d; nie odczytujemy wartosci double.\nOdzyskane: x=-3 y=42\nZgodnosc: 1\n"
+    },
+    {
+      "name": "memcpy-negative-roundtrip",
+      "mode": "san",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-pie",
+        "-no-pie",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip.c",
+        "-o",
+        "/tmp/w6-regression-_q6a6c2h/memcpy-negative-roundtrip-san"
+      ],
+      "source": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    int x = -3;\n    int y = 42;\n    double d = 9.0;\n    unsigned char bufor[sizeof x + sizeof y];\n    int odzyskane_x = 0;\n    int odzyskane_y = 0;\n\n    printf(\"int: %zu B, double: %zu B, dwie reprezentacje int: %zu B\\n\",\n           sizeof x, sizeof d, sizeof x + sizeof y);\n    if (sizeof(int) != 4 || sizeof(double) != 8 ||\n        sizeof d != sizeof x + sizeof y) {\n        puts(\"Ten pokaz wymaga int 4 B i double 8 B.\");\n        return 0;\n    }\n\n    printf(\"Przed kopiowaniem: x=%d y=%d d=%.1f\\n\", x, y, d);\n    memcpy(bufor, &x, sizeof x);\n    memcpy(bufor + sizeof x, &y, sizeof y);\n    memcpy(&d, bufor, sizeof d);\n    puts(\"Skopiowano 8 B do d; nie odczytujemy wartosci double.\");\n\n    memcpy(bufor, &d, sizeof d);\n    memcpy(&odzyskane_x, bufor, sizeof odzyskane_x);\n    memcpy(&odzyskane_y, bufor + sizeof x, sizeof odzyskane_y);\n    printf(\"Odzyskane: x=%d y=%d\\n\", odzyskane_x, odzyskane_y);\n    printf(\"Zgodnosc: %d\\n\", odzyskane_x == x && odzyskane_y == y);\n    return (odzyskane_x == x && odzyskane_y == y) ? 0 : 1;\n}",
+      "exit": 0,
+      "stdout": "int: 4 B, double: 8 B, dwie reprezentacje int: 8 B\nPrzed kopiowaniem: x=-3 y=42 d=9.0\nSkopiowano 8 B do d; nie odczytujemy wartosci double.\nOdzyskane: x=-3 y=42\nZgodnosc: 1\n"
+    }
+  ]
+}

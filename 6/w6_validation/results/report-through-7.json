@@ -1,0 +1,426 @@
+{
+  "notebook_sha256": "ad6bc76fdb64147d8eacf0b3d8ad020297b6303099373954a9c8362a4a617954",
+  "base_or_head": "95f4bc5c241d9032f0f686abc12ec732bb55a6bc",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "through": 7,
+  "runs": [
+    {
+      "cell": 4,
+      "section": 1,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_4.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_4_O0"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, rozmiar = 4 B\nd = 3.5, rozmiar = 8 B\nc = A, rozmiar = 1 B\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_4.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_4_O2"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, rozmiar = 4 B\nd = 3.5, rozmiar = 8 B\nc = A, rozmiar = 1 B\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_4.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_4_san"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, rozmiar = 4 B\nd = 3.5, rozmiar = 8 B\nc = A, rozmiar = 1 B\n"
+        }
+      }
+    },
+    {
+      "cell": 8,
+      "section": 2,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_8.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_8_O0"
+          ],
+          "exit": 0,
+          "stdout": "Przed: a = 100, &a = 0x7ffc27063bc4\nPo:    a = 200, &a = 0x7ffc27063bc4\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_8.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_8_O2"
+          ],
+          "exit": 0,
+          "stdout": "Przed: a = 100, &a = 0x7ffcbe1112d4\nPo:    a = 200, &a = 0x7ffcbe1112d4\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_8.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_8_san"
+          ],
+          "exit": 0,
+          "stdout": "Przed: a = 100, &a = 0x7fffb5411aa0\nPo:    a = 200, &a = 0x7fffb5411aa0\n"
+        }
+      }
+    },
+    {
+      "cell": 13,
+      "section": 3,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_13.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_13_O0"
+          ],
+          "exit": 0,
+          "stdout": "&a = 0x7ffd538f8c7c\np  = 0x7ffd538f8c7c\n&p = 0x7ffd538f8c88\np == &a: 1\nRozmiar a = 4 B, p = 8 B\nRozmiar d = 8 B, pd = 8 B\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_13.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_13_O2"
+          ],
+          "exit": 0,
+          "stdout": "&a = 0x7ffe4b2a68bc\np  = 0x7ffe4b2a68bc\n&p = 0x7ffe4b2a68c0\np == &a: 1\nRozmiar a = 4 B, p = 8 B\nRozmiar d = 8 B, pd = 8 B\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_13.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_13_san"
+          ],
+          "exit": 0,
+          "stdout": "&a = 0x7ffda1799520\np  = 0x7ffda1799520\n&p = 0x7ffda1799530\np == &a: 1\nRozmiar a = 4 B, p = 8 B\nRozmiar d = 8 B, pd = 8 B\n"
+        }
+      }
+    },
+    {
+      "cell": 17,
+      "section": 4,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_17.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_17_O0"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, *p = 100\n&a = 0x7ffd8628ee7c, p = 0x7ffd8628ee7c, &p = 0x7ffd8628ee80\nPo a = 20: a = 20, *p = 20\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_17.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_17_O2"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, *p = 100\n&a = 0x7ffe222e586c, p = 0x7ffe222e586c, &p = 0x7ffe222e5870\nPo a = 20: a = 20, *p = 20\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_17.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_17_san"
+          ],
+          "exit": 0,
+          "stdout": "a = 100, *p = 100\n&a = 0x7ffef9e6b820, p = 0x7ffef9e6b820, &p = 0x7ffef9e6b830\nPo a = 20: a = 20, *p = 20\n"
+        }
+      }
+    },
+    {
+      "cell": 22,
+      "section": 5,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_22.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_22_O0"
+          ],
+          "exit": 0,
+          "stdout": "Start:      a=100 b=200 *p=100 *q=100\n*p = 20:    a=20 b=200 *p=20 *q=20\np = &b:     a=20 b=200 *p=200 *q=20\n*p = 30:    a=20 b=30 *p=30 *q=20\np == &b: 1, q == &a: 1\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_22.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_22_O2"
+          ],
+          "exit": 0,
+          "stdout": "Start:      a=100 b=200 *p=100 *q=100\n*p = 20:    a=20 b=200 *p=20 *q=20\np = &b:     a=20 b=200 *p=200 *q=20\n*p = 30:    a=20 b=30 *p=30 *q=20\np == &b: 1, q == &a: 1\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_22.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_22_san"
+          ],
+          "exit": 0,
+          "stdout": "Start:      a=100 b=200 *p=100 *q=100\n*p = 20:    a=20 b=200 *p=20 *q=20\np = &b:     a=20 b=200 *p=200 *q=20\n*p = 30:    a=20 b=30 *p=30 *q=20\np == &b: 1, q == &a: 1\n"
+        }
+      }
+    },
+    {
+      "cell": 27,
+      "section": 6,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_27.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_27_O0"
+          ],
+          "exit": 0,
+          "stdout": "pp = 0x7ffcece715d8, &p = 0x7ffcece715d8\n*pp = 0x7ffcece715d0, p = 0x7ffcece715d0\nStart:       a=100 b=200 **pp=100\n**pp = 20:   a=20 b=200 **pp=20\n*pp = &b:    a=20 b=200 **pp=200\n**pp = 30:   a=20 b=30 **pp=30\np == &b: 1, pp == &p: 1\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_27.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_27_O2"
+          ],
+          "exit": 0,
+          "stdout": "pp = 0x7fffb28e0b60, &p = 0x7fffb28e0b60\n*pp = 0x7fffb28e0b58, p = 0x7fffb28e0b58\nStart:       a=100 b=200 **pp=100\n**pp = 20:   a=20 b=200 **pp=20\n*pp = &b:    a=20 b=200 **pp=200\n**pp = 30:   a=20 b=30 **pp=30\np == &b: 1, pp == &p: 1\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_27.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_27_san"
+          ],
+          "exit": 0,
+          "stdout": "pp = 0x7ffc21242dc0, &p = 0x7ffc21242dc0\n*pp = 0x7ffc21242da0, p = 0x7ffc21242da0\nStart:       a=100 b=200 **pp=100\n**pp = 20:   a=20 b=200 **pp=20\n*pp = &b:    a=20 b=200 **pp=200\n**pp = 30:   a=20 b=30 **pp=30\np == &b: 1, pp == &p: 1\n"
+        }
+      }
+    },
+    {
+      "cell": 31,
+      "section": 7,
+      "modes": {
+        "O0": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O0",
+            "/tmp/w6-check-bfn2pjta/cell_31.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_31_O0"
+          ],
+          "exit": 0,
+          "stdout": "Brak celu: nie odczytujemy *p.\nPo p = &a: *p = 10\nPo zapisie: a = 20\n"
+        },
+        "O2": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O2",
+            "/tmp/w6-check-bfn2pjta/cell_31.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_31_O2"
+          ],
+          "exit": 0,
+          "stdout": "Brak celu: nie odczytujemy *p.\nPo p = &a: *p = 10\nPo zapisie: a = 20\n"
+        },
+        "san": {
+          "command": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Werror",
+            "-O1",
+            "-g",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-fno-pie",
+            "-no-pie",
+            "/tmp/w6-check-bfn2pjta/cell_31.c",
+            "-o",
+            "/tmp/w6-check-bfn2pjta/cell_31_san"
+          ],
+          "exit": 0,
+          "stdout": "Brak celu: nie odczytujemy *p.\nPo p = &a: *p = 10\nPo zapisie: a = 20\n"
+        }
+      }
+    }
+  ],
+  "kernel": {
+    "cells": 7,
+    "result": "PASS",
+    "python": "/home/sgepner/Virtualenv/jupyter/bin/python"
+  }
+}
