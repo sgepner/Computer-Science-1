@@ -1,6 +1,6 @@
 # Kontrakt wykonawczy: audyt i korekty dydaktyczne W1–W5
 
-Status: **COMPLETE — CP0–CP8 zakończone; dowody i jawne ograniczenia środowiska w sekcji 12**
+Status: **COMPLETE — CP0–CP8 i ręczna integracja edycji użytkownika zakończone; aktualny stan w sekcji 13, dowody audytu w sekcji 12**
 Repozytorium: `sgepner/Computer-Science-1`  
 Gałąź robocza: `feature/W1-W5-audyt-poprawki`  
 Punkt odniesienia: aktualny `master` z chwili utworzenia gałęzi, 2026-11-06.  
@@ -623,3 +623,16 @@ git restore --source=cff50bbe946473eae72e8f304a8f1b7dbdc244f5 -- \
 ```
 
 Nie cherry-pickować całych commitów mieszających materiał z niniejszym raportem. Nie przenosić W1_W5_AUDYT_POPRAWKI_AGENT_CONTRACT.md, promptów, macierzy ani /tmp/w1-w5-audit do master. Gałąź pozostaje gotowa do powyższej selekcji; niczego nie wysłano na serwer.
+
+
+## 13. Aktualny stan po ręcznej integracji — 2026-11-15
+
+**COMPLETE, tryb CONTINUOUS.** Na polecenie użytkownika ręcznie włączono wartościowe lokalne edycje do wersji po audycie. Historyczne informacje sekcji 12 o niescalonych edycjach i osobnym worktree opisują stan pierwotnego odbioru; poniższy stan je zastępuje.
+
+- Jedyny aktywny checkout: /home/sgepner/OneDrive/Dydaktyka/Info_CS_1/Lecture, gałąź feature/W1-W5-audyt-poprawki, HEAD b5fed2eae66e470efec6178507225a4cce3edb48. Scalone zmiany W3/W4, ich checkerów i niniejsza aktualizacja pozostają **niezacommitowane**; nie utworzono nowych commitów ani nie wykonano push/merge. Master pozostał 9a42b0348e74c25795dad19a1bafc25f349a9d92.
+- W3: kody i znaki ASCII w widocznych nawiasach; precyzja pow; abs(int) obok fabs(double), z wyjaśnieniem utraty części ułamkowej przy abs(-3.6). W4: schemat if oraz przykład nakładających się warunków, w którym wcześniejsze x<10 blokuje x==-2; objaśnienie i test zmiany kolejności. Nie zastąpiono poprawionych materiałów starszymi notebookami. Redundantny przykład OR jest już objęty de Morganem; kosmetyczne zmiany W5 i zapisane wyniki pominięto.
+- Testy koordynatora: python3 3/check_w3.py — PASS (48 programów notebooka, 46 prób terminalowych, 16 fgets); python3 4/check_w4.py — PASS (54 próby IF, 7 logicznych, 64 A/B, diagnostyki oraz dodatkowe warunki nakładające się); python3 check_w1_w5.py — PASS. Ponowiono je po wznowieniu na identycznych scalonych plikach. Pełny zakres W1/W2/W5 nie zmienił się i zachowuje dowody CP8.
+- Rzeczywisty kernel C dla zmienionych wykładów: W3 24 + W4 22 = 46/46 PASS; użyto jawnej, opisanej w sekcji 12 poprawki transportu. To nie jest dowód niezawodności fabrycznego transportu. Zgodność SHA256 potwierdza, że testowane pliki są tymi, które znajdują się obecnie w katalogu źródłowym.
+- Niezależny reviewer audit_w3_w5 (rzeczywisty agent_type independent_reviewer; konfiguracja roli gpt-6.1-sol/medium), inny niż implementer: PASS integracji i wyroczni; dodatkowo niezależnie skompilował trzy zmienione programy przy O0/O2 i sprawdził dokładne wyniki, 6/6 PASS. Nie edytował repozytorium. Raport: /tmp/w1-w5-user-integration/review.md.
+- Czysty odłączony dodatkowy worktree /home/sgepner/.codex/worktrees/w1-w5-audit/Lecture usunięto przez git worktree remove po sprawdzeniu braku nieśledzonych i ignorowanych plików. Narzędzie archiwizacji aplikacji nie było dostępne we wznowionej sesji. Wszystkie 280 wcześniej nieśledzonych plików w katalogu źródłowym zachowano; porównano pełny inwentarz przed/po.
+- Oryginalne notebooki użytkownika, oryginalny diff, kopie scalonych plików, manifest SHA256 i logi: /tmp/w1-w5-user-integration/. Kopie pierwotnych notebooków są w podkatalogu original/. Bieżący wynik nie wymaga już osobnego worktree. Brak kolejnego checkpointu w zatwierdzonym zakresie.

@@ -30,6 +30,7 @@ EXPECTED = {
     "7c7e8639": "mianownik=0, wynik=0\n",
     "w4-branch-blocks": "dodatni\nwewnatrz bloku\npo decyzji\n",
     "w4-branch-independent-chain": "A\nB\nC\n---\ndodatnie\n",
+    "w4-branch-overlap-user": "B\n---\n",
     "w4-branch-nested-else": "else nalezy do wewnetrznego if\n",
     "w4-branch-assignment": "warunek prawdziwy\na=7\n",
     "dd027695-8bf4-47cb-85da-bf44f5163516": "17\n",
@@ -199,6 +200,16 @@ def main():
             assert comp.returncode==0 and "dangling-else" in comp.stderr,comp.stderr
             assert run([str(exe)]).stdout==expected
             count+=1
+        # User's overlapping predicates: late equality is unreachable in this order.
+        text="".join(cells["w4-branch-overlap-user"]["source"])
+        for x,expected in ((-2,"B\n---\n"),(7,"A\n---\n"),(0,"B\n---\n")):
+            exe=build(text.replace("x = -2",f"x = {x}"),temp)
+            assert run([str(exe)]).stdout==expected
+        reordered=text.replace('else if (x < 10)\n        puts("B");\n    else if (x == -2)\n        puts("C");',
+                              'else if (x == -2)\n        puts("C");\n    else if (x < 10)\n        puts("B");')
+        assert reordered!=text
+        assert run([str(build(reordered,temp))]).stdout=="C\n---\n"
+        print("PASS overlapping else-if: 3 inputs and repaired condition order")
         # De Morgan and short-circuit safeguards on multiple boundary values.
         for x in (-1,0,10,11):
             text=''.join(cells["ae30e57f"]["source"]).replace("x = 11",f"x = {x}")

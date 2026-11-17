@@ -34,9 +34,9 @@ EXPECTED_CELLS = [
     "wynik=1, a=7, b=-1.0\n",
     "wynik=-1, EOF=-1\n",
     "wynik=2, f=1.25, x=2.50\n",
-    "r1=1, pierwszy_kod=32\nr2=1, drugi=A\n",
+    "r1=1, pierwszy_kod=32, znak=[ ]\nr2=1, drugi_kod=65, znak=[A]\n",
     "Blad danych: oczekiwano int, wynik=0\n",
-    "sqrt(9)=3.00\npow(2,3)=8.00\nfabs(-3.5)=3.50\n"
+    "sqrt(9)=3.00\npow(2,3)=8.000\nabs(-3)=3\nfabs(-3.5)=3.50\n"
     "floor(2.7)=2.00, ceil(2.7)=3.00\n",
     "exp(2)=7.389056\nlog(exp(2))=2.000000\nlog10(1000)=3.000000\n",
     "pow(5,-3.9)=0.001879\npow(10,2.4)=251.188643\n"
